@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Projet"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Projet">
+				<Option output="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Projet" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 Projet"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Projet/fast">
+				<Option output="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Projet" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 Projet/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/main.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/constante/Constante.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/constante/Constante.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/expression/Expression.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/expression/Expression.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/Operation.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/Operation.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/addition/Addition.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/addition/Addition.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/division/Division.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/division/Division.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/multiplication/Multiplication.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/multiplication/Multiplication.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/soustraction/Soustraction.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/soustraction/Soustraction.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/variable/Variable.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/variable/Variable.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
