@@ -3,6 +3,8 @@
 //
 
 #include "Division.h"
+#include "../../constante/Constante.h"
+
 #include <iostream>
 
 void Division::afficherNC() {
@@ -21,4 +23,9 @@ void Division::afficherNPI() {
 
 float Division::calculer() {
     return get_ed()->calculer() / get_eg()->calculer();
+}
+
+Expression *Division::simplifier() {
+    const float result = calculer();
+    return new Constante(result);
 }

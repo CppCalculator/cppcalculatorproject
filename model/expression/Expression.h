@@ -12,6 +12,7 @@ public:
     virtual void afficherNC() = 0;
     virtual void afficherNPI() = 0;
     virtual float calculer() = 0;
+    virtual Expression* simplifier() = 0;
 };
 
 

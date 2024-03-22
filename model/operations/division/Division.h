@@ -10,7 +10,7 @@
 class Division: public Operation{
 public:
     Division(Expression *m_eg, Expression *m_ed)
-        : Operation(m_eg, m_ed) {
+            : Operation(m_eg, m_ed) {
     }
 
     ~Division() override = default;
@@ -18,6 +18,7 @@ public:
     void afficherNC() override;
     void afficherNPI() override;
     float calculer() override;
+    Expression* simplifier() override;
 };
 
 

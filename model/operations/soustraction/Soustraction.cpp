@@ -3,6 +3,7 @@
 //
 
 #include "Soustraction.h"
+#include "../../constante/Constante.h"
 
 #include <iostream>
 
@@ -23,4 +24,9 @@ void Soustraction::afficherNPI() {
 
 float Soustraction::calculer() {
     return get_ed()->calculer() - get_eg()->calculer();
+}
+
+Expression *Soustraction::simplifier() {
+    const float result = calculer();
+    return new Constante(result);
 }

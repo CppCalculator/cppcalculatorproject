@@ -11,7 +11,7 @@
 class Addition final : public Operation{
 public:
     Addition(Expression *m_eg, Expression *m_ed)
-        : Operation(m_eg, m_ed) {
+            : Operation(m_eg, m_ed) {
     }
 
     ~Addition() override = default;
@@ -19,6 +19,7 @@ public:
     void afficherNC() override;
     void afficherNPI() override;
     float calculer() override;
+    Expression* simplifier() override;
 };
 
 

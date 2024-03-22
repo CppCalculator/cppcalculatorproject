@@ -3,8 +3,10 @@
 //
 
 #include "Addition.h"
+#include "../../constante/Constante.h"
 
 #include <iostream>
+#include <memory>
 
 void Addition::afficherNC() {
     std::cout << "(";
@@ -24,3 +26,9 @@ void Addition::afficherNPI() {
 float Addition::calculer() {
     return get_eg()->calculer() + get_ed()->calculer();
 }
+
+Expression *Addition::simplifier() {
+    const float result = calculer();
+    return new Constante(result);
+}
+

@@ -12,7 +12,7 @@ class Constante final : public Expression {
 
 public:
     explicit Constante(const float m_valeur)
-        : m_valeur(m_valeur) {
+            : m_valeur(m_valeur) {
     }
 
     ~Constante() override = default;
@@ -20,6 +20,8 @@ public:
     float calculer() override;
     void afficherNC() override;
     void afficherNPI() override;
+    Expression* simplifier() override;
+
 };
 
 

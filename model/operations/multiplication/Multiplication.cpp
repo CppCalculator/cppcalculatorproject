@@ -3,7 +3,7 @@
 //
 
 #include "Multiplication.h"
-
+#include "../../constante/Constante.h"
 #include <iostream>
 
 void Multiplication::afficherNC() {
@@ -22,4 +22,9 @@ void Multiplication::afficherNPI() {
 
 float Multiplication::calculer() {
     return get_ed()->calculer() * get_eg()->calculer();
+}
+
+Expression *Multiplication::simplifier() {
+    const float result = calculer();
+    return new Constante(result);
 }

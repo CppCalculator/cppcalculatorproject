@@ -5,6 +5,7 @@
 #include "Constante.h"
 
 #include <iostream>
+#include <memory>
 
 void Constante::afficherNC() {
     std::cout << m_valeur;
@@ -16,4 +17,8 @@ void Constante::afficherNPI() {
 
 float Constante::calculer() {
     return m_valeur;
+}
+
+Expression *Constante::simplifier() {
+    return new Constante(m_valeur);
 }
