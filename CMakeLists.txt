@@ -19,4 +19,6 @@ add_executable(Projet main.cpp
         model/operations/soustraction/Soustraction.cpp
         model/operations/soustraction/Soustraction.h
         model/variable/Variable.cpp
-        model/variable/Variable.h)
+        model/variable/Variable.h
+        model/variable/SymbolTable.cpp
+        model/variable/SymbolTable.h)

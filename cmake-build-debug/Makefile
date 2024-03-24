@@ -321,6 +321,30 @@ model/operations/soustraction/Soustraction.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/model/operations/soustraction/Soustraction.cpp.s
 .PHONY : model/operations/soustraction/Soustraction.cpp.s
 
+model/variable/SymbolTable.o: model/variable/SymbolTable.cpp.o
+.PHONY : model/variable/SymbolTable.o
+
+# target to build an object file
+model/variable/SymbolTable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/model/variable/SymbolTable.cpp.o
+.PHONY : model/variable/SymbolTable.cpp.o
+
+model/variable/SymbolTable.i: model/variable/SymbolTable.cpp.i
+.PHONY : model/variable/SymbolTable.i
+
+# target to preprocess a source file
+model/variable/SymbolTable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/model/variable/SymbolTable.cpp.i
+.PHONY : model/variable/SymbolTable.cpp.i
+
+model/variable/SymbolTable.s: model/variable/SymbolTable.cpp.s
+.PHONY : model/variable/SymbolTable.s
+
+# target to generate assembly for a file
+model/variable/SymbolTable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/model/variable/SymbolTable.cpp.s
+.PHONY : model/variable/SymbolTable.cpp.s
+
 model/variable/Variable.o: model/variable/Variable.cpp.o
 .PHONY : model/variable/Variable.o
 
@@ -378,6 +402,9 @@ help:
 	@echo "... model/operations/soustraction/Soustraction.o"
 	@echo "... model/operations/soustraction/Soustraction.i"
 	@echo "... model/operations/soustraction/Soustraction.s"
+	@echo "... model/variable/SymbolTable.o"
+	@echo "... model/variable/SymbolTable.i"
+	@echo "... model/variable/SymbolTable.s"
 	@echo "... model/variable/Variable.o"
 	@echo "... model/variable/Variable.i"
 	@echo "... model/variable/Variable.s"

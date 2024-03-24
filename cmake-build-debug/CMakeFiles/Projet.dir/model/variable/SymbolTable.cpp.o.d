@@ -1,5 +1,6 @@
-CMakeFiles/Projet.dir/main.cpp.o: \
-  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/main.cpp \
+CMakeFiles/Projet.dir/model/variable/SymbolTable.cpp.o: \
+  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/variable/SymbolTable.cpp \
+  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/variable/SymbolTable.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__config \
@@ -823,19 +824,9 @@ CMakeFiles/Projet.dir/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__locale_dir/locale_base_api/bsd_locale_defaults.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdarg \
-  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/constante/Constante.h \
-  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/constante/../expression/Expression.h \
-  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/addition/Addition.h \
-  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/addition/../Operation.h \
-  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/addition/../../expression/Expression.h \
-  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/multiplication/Multiplication.h \
-  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/multiplication/../Operation.h \
-  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/variable/SymbolTable.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/unordered_map \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/is_transparent.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__hash_table \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/ranges_iterator_traits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__node_handle \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/optional \
-  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/variable/Variable.h \
-  /Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/variable/../expression/Expression.h
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/optional

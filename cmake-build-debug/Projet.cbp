@@ -123,6 +123,12 @@
 		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/operations/soustraction/Soustraction.h">
 			<Option target="Projet"/>
 		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/variable/SymbolTable.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/variable/SymbolTable.h">
+			<Option target="Projet"/>
+		</Unit>
 		<Unit filename="/Users/sofiaboldeskul/Desktop/ISEN/C++/cppcalculatorproject/model/variable/Variable.cpp">
 			<Option target="Projet"/>
 		</Unit>
