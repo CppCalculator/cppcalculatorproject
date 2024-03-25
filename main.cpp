@@ -16,7 +16,7 @@ int main()
     Constante r2 (a2.calculer());
     std::cout << "\n" ;
     r2.afficherNPI();
-    Graph3D g(0, nullptr);
+    Graph3D b(0, nullptr, &r2);
 
     return 0;
 }

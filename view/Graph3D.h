@@ -7,15 +7,22 @@
 
 #include <QtGraphs>
 
+#include "model/expression/Expression.h"
+
 class Graph3D {
     private:
-        Q3DScatter * _scatter;
-        QScatterDataArray _data;
+        Expression * _expression;
+        Q3DSurface * _surface;
+        QSurface3DSeries * _series;
+        int _borne = 1;
         float _min = 0;
         float _max = 0;
+        QSurfaceDataArray * getSurfaceFromExpression() ;
+        void setupResolutionSlider(QVBoxLayout *panelLayout);
+        void setupAxisRanges() const;
     public:
-        Graph3D(int argc, char **argv);
-        QScatterDataArray test();
+        Graph3D(int argc, char **argv, Expression * expression);
+        void setExpression(Expression * expression);
 };
 
 
