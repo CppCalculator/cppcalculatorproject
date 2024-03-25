@@ -3,6 +3,7 @@
 #include "model/constante/Constante.h"
 #include "model/operations/addition/Addition.h"
 #include "model/operations/multiplication/Multiplication.h"
+#include "view/Graph3D.h"
 
 int main()
 {
@@ -15,6 +16,7 @@ int main()
     Constante r2 (a2.calculer());
     std::cout << "\n" ;
     r2.afficherNPI();
+    Graph3D g(0, nullptr);
 
     return 0;
 }
