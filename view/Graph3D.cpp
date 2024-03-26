@@ -6,6 +6,8 @@
 #include <QtWidgets/QApplication>
 #include <cmath>
 
+#include "model/variable/Variable.h"
+
 /**
  * @brief Constructor of the Graph3D class
  * @param argc - The number of arguments
@@ -101,24 +103,24 @@ void Graph3D::setupResolutionSlider(QVBoxLayout *panelLayout)
  */
 QSurfaceDataArray* Graph3D::getSurfaceFromExpression() {
     auto *data = new QSurfaceDataArray;
+    _min = _expression->calculer();
+    _max = _expression->calculer();
+    auto * xVar = Variable::construct('x');
+    auto * yVar = Variable::construct('y');
 
     for (int x = -_borne; x <= _borne; x++) {
         auto *row = new QSurfaceDataRow;
-
         for (int y = -_borne; y <= _borne; y++) {
             auto const xFloat = static_cast<float>(x);
             auto const yFloat = static_cast<float>(y);
-            float const z = std::sin(std::sqrt(xFloat * xFloat + yFloat * yFloat));
-            if (x== -_borne && y == -_borne) {
+            xVar->changeValue(xFloat);
+            yVar->changeValue(yFloat);
+            auto const z = _expression->calculer();
+            if (z < _min) {
                 _min = z;
+            }
+            if (z > _max) {
                 _max = z;
-            } else {
-                if (z < _min) {
-                    _min = z;
-                }
-                if (z > _max) {
-                    _max = z;
-                }
             }
             *row << QVector3D(xFloat, yFloat, z);
         }
@@ -135,6 +137,14 @@ void Graph3D::setExpression(Expression * expression) {
     _expression = expression;
     _series->dataProxy()->resetArray(getSurfaceFromExpression());
     setupAxisRanges();
+}
+
+/**
+ * @brief Destructor of the Graph3D class
+ */
+Graph3D::~Graph3D() {
+    delete _surface;
+    delete _series;
 }
 
 

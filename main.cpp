@@ -14,10 +14,10 @@ int main()
 
     // Instanciation de la variable x
     Constante c1(2);
-    auto v1 = Variable::construct('x');
+    auto v1 = Variable::construct('x',0);
 
     Constante c2(3);
-    auto v2 = Variable::construct('y');
+    auto v2 = Variable::construct('y',0);
 
     Multiplication m1(&c1, v1);
 

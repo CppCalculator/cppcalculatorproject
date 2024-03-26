@@ -23,6 +23,7 @@ class Graph3D {
     public:
         Graph3D(int argc, char **argv, Expression * expression);
         void setExpression(Expression * expression);
+        ~Graph3D();
 };
 
 
