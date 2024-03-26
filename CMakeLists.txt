@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.28)
 project(Projet)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -34,6 +34,9 @@ add_executable(Projet main.cpp
         model/expression/Expression.cpp
         model/expression/Expression.h
         model/operations/soustraction/Soustraction.cpp
+        model/operations/soustraction/Soustraction.h
+        model/variable/Variable.cpp
+        model/variable/Variable.h
         model/operations/soustraction/Soustraction.h
         view/Graph3D.cpp
         view/Graph3D.h)
