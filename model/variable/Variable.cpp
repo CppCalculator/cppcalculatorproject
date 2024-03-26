@@ -31,3 +31,16 @@ Variable *Variable::construct(const char &name) {
 
     return symbolTable[name];
 }
+
+Variable *Variable::construct(const char &name, const float &value) {
+    if (symbolTable.find(name) == symbolTable.end()) {
+        symbolTable[name] = new Variable(name, value);
+    }
+
+    return symbolTable[name];
+}
+
+void Variable::changeValue(const float &val) {
+    this->value = val;
+    symbolTable[name]->value = val;
+}
