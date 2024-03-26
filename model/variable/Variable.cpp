@@ -44,3 +44,7 @@ void Variable::changeValue(const float &val) {
     this->value = val;
     symbolTable[name]->value = val;
 }
+
+std::map<const char, Variable *> Variable::getSymbolTable() {
+    return symbolTable;
+}
