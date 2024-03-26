@@ -57,6 +57,7 @@ Graph3D::Graph3D(int argc, char **argv, Expression * expression) {
     widget->setLayout(mainLayout);
 
     // Show the widget
+    widget->setWindowTitle("Graph 3D");
     widget->show();
     QApplication::exec();
 }
