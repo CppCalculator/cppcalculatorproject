@@ -16,12 +16,6 @@
 Graph3D::Graph3D(int argc, char **argv, Expression * expression) {
     _expression = expression;
 
-    if (Variable::getSymbolTable().size() != 2) {
-        std::cerr << "You must have exactly 2 variables in the symbol table to display a 3D graph" << std::endl;
-        delete this;
-    }
-
-
     QApplication app(argc, argv);
 
     // Surface Graph
@@ -109,6 +103,10 @@ void Graph3D::setupResolutionSlider(QVBoxLayout *panelLayout)
  * @return QSurfaceDataArray* - The surface data array
  */
 QSurfaceDataArray* Graph3D::getSurfaceFromExpression() {
+    if (Variable::getSymbolTable().size() != 2) {
+        std::cerr << "You must have exactly 2 variables in the symbol table to display a 3D graph" << std::endl;
+        return nullptr;
+    }
     auto *data = new QSurfaceDataArray;
     _min = _expression->calculer();
     _max = _expression->calculer();
