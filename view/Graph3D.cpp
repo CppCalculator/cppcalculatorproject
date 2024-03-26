@@ -39,7 +39,7 @@ Graph3D::Graph3D(int argc, char **argv, Expression * expression) {
     panelLayout->setContentsMargins(5, 0, 0, 0);
     mainLayout->setSpacing(0);
 
-    auto *graphLabel = new QLabel("Graph 3D - by M1 Software Development");
+    auto *graphLabel = new QLabel("Graph 3D of the expression");
     graphLabel->setAlignment(Qt::AlignCenter);
     graphLabel->setMargin(10);
     panelLayout->addWidget(graphLabel);
