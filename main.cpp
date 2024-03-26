@@ -27,19 +27,12 @@ int main()
 
     a1.afficherNPI();
     std::cout << "\n";
-    r2.afficherNPI();
-    Graph3D b(0, nullptr, &r2);
-
-    auto v3 = Variable::construct('z', a1.calculer());
-
-    v3->afficherNC();
-    std::cout << " = " << v3->calculer() << std::endl;
+    Graph3D b(0, nullptr, &a1);
 
     // Libération de la memoire
     // À faire obligatoirement pour éviter les fuites de mémoire
     delete v1;
     delete v2;
-    delete v3;
 
     return 0;
 }
