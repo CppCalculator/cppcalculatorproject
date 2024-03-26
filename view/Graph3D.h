@@ -17,7 +17,7 @@ class Graph3D {
         int _borne = 1;
         float _min = 0;
         float _max = 0;
-        QSurfaceDataArray * getSurfaceFromExpression() ;
+        QSurfaceDataArray * getSurfaceFromExpression();
         void setupResolutionSlider(QVBoxLayout *panelLayout);
         void setupAxisRanges() const;
     public:

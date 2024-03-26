@@ -19,7 +19,7 @@ Graph3D::Graph3D(int argc, char **argv, Expression * expression) {
     _surface = new Q3DSurface();
     _surface->setMinimumSize(QSize(256, 256));
     _surface->setResizeMode(QQuickWidget::SizeRootObjectToView);
-    _surface->activeTheme()->setType(Q3DTheme::ThemeArmyBlue);
+    _surface->activeTheme()->setType(Q3DTheme::ThemePrimaryColors);
     _surface->activeTheme()->setLabelBackgroundEnabled(false);
     _surface->activeTheme()->setLabelBorderEnabled(false);
     _surface->activeTheme()->setGridEnabled(false);
