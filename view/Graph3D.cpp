@@ -15,6 +15,13 @@
  */
 Graph3D::Graph3D(int argc, char **argv, Expression * expression) {
     _expression = expression;
+
+    if (Variable::getSymbolTable().size() != 2) {
+        std::cerr << "You must have exactly 2 variables in the symbol table to display a 3D graph" << std::endl;
+        delete this;
+    }
+
+
     QApplication app(argc, argv);
 
     // Surface Graph
