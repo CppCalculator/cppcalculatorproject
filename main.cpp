@@ -17,10 +17,11 @@ int main()
     auto v1 = Variable::construct('x',0);
 
     Constante c2(3);
+    auto v2 = Variable::construct('y',0);
 
     Multiplication m1(&c1, v1);
 
-    Multiplication m2(&c2, &c2);
+    Multiplication m2(&c2, v2);
 
     Addition a1(&m1, &m2);
 
