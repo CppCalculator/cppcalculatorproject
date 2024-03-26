@@ -1,5 +1,5 @@
 //
-// Created by devil on 25/03/2024.
+// Created by Mathias CITRINI and William Der Krikorian on 25/03/2024.
 //
 
 #include "Graph3D.h"
