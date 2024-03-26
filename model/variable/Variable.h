@@ -44,6 +44,13 @@ public:
      */
     void changeValue(const float &val);
 
+    /**
+     * Method that returns the symbolTable.
+     *
+     * @return The symbol table
+     */
+    static std::map<const char, Variable *> getSymbolTable();
+
 private:
     Variable(const char &name, const float &value);
 
