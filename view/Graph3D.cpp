@@ -95,7 +95,7 @@ void Graph3D::setupResolutionSlider(QVBoxLayout *panelLayout)
 }
 
 /**
- * @brief Get the surface from the Expression object
+ * @brief Get the surface from the Expression object. It calculates the value of the expression for each point of the graph between -_borne and _borne
  * @return QSurfaceDataArray* - The surface data array
  */
 QSurfaceDataArray* Graph3D::getSurfaceFromExpression() {
