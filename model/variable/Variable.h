@@ -26,12 +26,30 @@ public:
      */
     static Variable *construct(const char &name);
 
+    /**
+     * Method that acts as a constructor for the Variable class.
+     * It creates a new Variable object if it doesn't exist in the symbolTable.
+     * It returns the Variable object from the symbolTable as a pointer.
+     *
+     * @param name: the name of the variable
+     * @param value: the value of the variable
+     * @return Pointer to the Variable object
+     */
+    static Variable *construct(const char &name, const float &value);
+
+    /**
+     * Method that changes the value of the variable.
+     *
+     * @param val: the new value of the variable
+     */
+    void changeValue(const float &val);
+
 private:
     Variable(const char &name, const float &value);
 
     static constexpr float default_value = 1;
     const char name;
-    const float value;
+    float value;
 
     static std::map<const char, Variable *> symbolTable;
 };
