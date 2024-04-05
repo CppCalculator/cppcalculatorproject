@@ -4,6 +4,9 @@
 
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
+#include <iostream>
+#include <ostream>
+#include <string>
 
 
 class Expression {
@@ -12,6 +15,8 @@ public:
     virtual void afficherNC() = 0;
     virtual void afficherNPI() = 0;
     virtual float calculer() = 0;
+    virtual void afficherNPI(std::ostream& flux) const = 0;
+   virtual void sauvegardeASCII(const std::string& n_fichier) = 0;
 };
 
 

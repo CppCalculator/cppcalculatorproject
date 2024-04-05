@@ -18,6 +18,8 @@ public:
     void afficherNC() override;
     void afficherNPI() override;
     float calculer() override;
+    void sauvegardeASCII(const std::string &n_fichier) override;
+    void afficherNPI(std::ostream &flux) const override;
 };
 
 

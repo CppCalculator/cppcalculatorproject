@@ -5,8 +5,10 @@
 #ifndef ADDITION_H
 #define ADDITION_H
 
-
+using namespace std;
 #include "../Operation.h"
+
+#include <string>
 
 class Addition final : public Operation{
 public:
@@ -19,6 +21,8 @@ public:
     void afficherNC() override;
     void afficherNPI() override;
     float calculer() override;
+    void afficherNPI(std::ostream& flux) const override;
+    void sauvegardeASCII(const std::string& n_fichier) override;
 };
 
 
