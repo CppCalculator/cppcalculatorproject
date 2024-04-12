@@ -3,6 +3,10 @@
 #include "../model/expression/Expression.h"
 #define GRAPH3DCONTROLLER_H
 
+/**
+* @brief The Graph3DController class, to control a 3D graph
+* This should be used only inside a view ! Use Graph3DView !
+*/
 class Graph3DController
 {
     private:

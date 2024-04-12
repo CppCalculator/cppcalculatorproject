@@ -7,6 +7,9 @@
 #include <QLabel>
 #include <QtGraphs>
 
+/**
+* @brief The Graph3DView class, to display a 3D graph
+*/
 class Graph3DView : public QWidget
 {
     Q_OBJECT
