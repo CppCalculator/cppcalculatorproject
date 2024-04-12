@@ -1,18 +1,13 @@
-#include <iostream>
-
+#include <QApplication>
 #include "model/constante/Constante.h"
 #include "model/operations/addition/Addition.h"
 #include "model/operations/multiplication/Multiplication.h"
 #include "model/variable/Variable.h"
-#include "view/Graph3D.h"
 
-int main()
+#include "view/graph3dview.h"
+
+int main(int argc, char *argv[])
 {
-    /*Constante c1(5);
-    Constante c2(3);
-    Addition a1(&c1, &c2);*/
-
-    // Instanciation de la variable x
     Constante c1(2);
     auto v1 = Variable::construct('x',0);
 
@@ -25,13 +20,9 @@ int main()
 
     Addition a1(&m1, &m2);
 
-    a1.afficherNPI();
-    std::cout << "\n";
-    Graph3D b(0, nullptr, &a1);
-
-    // Libération de la memoire
-    // À faire obligatoirement pour éviter les fuites de mémoire
-    delete v1;
-
-    return 0;
+    QApplication a(argc, argv);
+    Graph3DView view;
+    view.show();
+    view.setExpression(&a1);
+    return a.exec();
 }
