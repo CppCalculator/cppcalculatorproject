@@ -80,13 +80,3 @@ void FenetrePrincipale::createMenus() {
     outilsMenu = menuBar()->addMenu("&Outils");
     outilsMenu->addAction(simplificationExpressionAction);
 }
-
-#ifndef QT_NO_CONTEXTMENU
-void FenetrePrincipale::contextMenuEvent(QContextMenuEvent *event)
-{
-    QMenu menu(this);
-    menu.addAction(chargerFichierAction);
-    menu.addAction(enregistrerFichierAction);
-    menu.exec(event->globalPos());
-}
-#endif // QT_NO_CONTEXTMENU
