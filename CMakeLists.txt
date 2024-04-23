@@ -24,6 +24,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         view/graph3dview.h view/graph3dview.cpp
         controller/graph3dcontroller.h controller/graph3dcontroller.cpp
         model/fenetre/fenetre.h model/fenetre/fenetre.cpp
+        view/button.cpp view/button.h
+        view/calculator.cpp view/calculator.h
 
 
     )

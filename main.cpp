@@ -10,6 +10,8 @@
 #include "view/graph3dview.h"
 #include "model/fenetre/fenetre.h"
 
+#include "view/calculator.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -31,6 +33,9 @@ int main(int argc, char *argv[])
     Graph3DView view;
     view.show();
     view.setExpression(&a1);
+
+    Calculator calculator;
+    calculator.show();
 
     return QApplication::exec();
 }
