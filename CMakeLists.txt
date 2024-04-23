@@ -26,6 +26,22 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         model/fenetre/fenetre.h model/fenetre/fenetre.cpp
         view/button.cpp view/button.h
         view/calculator.cpp view/calculator.h
+        model/operations/puissance/Puissance.cpp
+        model/operations/puissance/Puissance.h
+        model/operationsUnaire/OperationUnaire.cpp
+        model/operationsUnaire/OperationUnaire.h
+        model/operationsUnaire/racine/Racine.cpp
+        model/operationsUnaire/racine/Racine.h
+        model/operationsUnaire/inverse/Inverse.cpp
+        model/operationsUnaire/inverse/Inverse.h
+        model/operationsUnaire/oppose/Oppose.cpp
+        model/operationsUnaire/oppose/Oppose.h
+        model/operationsUnaire/absolue/Absolue.cpp
+        model/operationsUnaire/absolue/Absolue.h
+        model/operationsUnaire/logNeperien/Ln.cpp
+        model/operationsUnaire/logNeperien/Ln.h
+        model/operationsUnaire/carre/Carre.cpp
+        model/operationsUnaire/carre/Carre.h
 
 
     )
