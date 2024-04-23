@@ -23,7 +23,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         model/constante/Constante.cpp model/constante/Constante.h model/expression/Expression.cpp model/expression/Expression.h model/operations/addition/Addition.cpp model/operations/addition/Addition.h model/operations/division/Division.cpp model/operations/division/Division.h model/operations/multiplication/Multiplication.cpp model/operations/multiplication/Multiplication.h model/operations/soustraction/Soustraction.cpp model/operations/soustraction/Soustraction.h model/operations/Operation.cpp model/operations/Operation.h model/variable/Variable.cpp model/variable/Variable.h
         view/graph3dview.h view/graph3dview.cpp
         controller/graph3dcontroller.h controller/graph3dcontroller.cpp
-        model/fenetre/fenetre.h model/fenetre/fenetre.cpp *
+        model/fenetre/fenetre.h model/fenetre/fenetre.cpp
         view/button.cpp view/button.h
         view/calculator.cpp view/calculator.h
 
