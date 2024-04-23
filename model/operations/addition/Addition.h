@@ -10,21 +10,24 @@ using namespace std;
 
 #include <string>
 
-class Addition final : public Operation{
+class Addition final : public Operation {
 public:
     Addition(Expression *m_eg, Expression *m_ed)
-        : Operation(m_eg, m_ed) {
+            : Operation(m_eg, m_ed) {
     }
 
     ~Addition() override = default;
 
     void afficherNC() override;
+
     void afficherNPI() override;
+
     float calculer() override;
+
     void afficherNPI(std::ostream& flux) const override;
+
     void sauvegardeASCII(const std::string& n_fichier) override;
 };
-
 
 
 #endif //ADDITION_H
