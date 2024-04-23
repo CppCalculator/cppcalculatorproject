@@ -10,9 +10,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Charts)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Graphs)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Widgets Charts Graphs)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -25,6 +23,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         model/constante/Constante.cpp model/constante/Constante.h model/expression/Expression.cpp model/expression/Expression.h model/operations/addition/Addition.cpp model/operations/addition/Addition.h model/operations/division/Division.cpp model/operations/division/Division.h model/operations/multiplication/Multiplication.cpp model/operations/multiplication/Multiplication.h model/operations/soustraction/Soustraction.cpp model/operations/soustraction/Soustraction.h model/operations/Operation.cpp model/operations/Operation.h model/variable/Variable.cpp model/variable/Variable.h
         view/graph3dview.h view/graph3dview.cpp
         controller/graph3dcontroller.h controller/graph3dcontroller.cpp
+        model/fenetre/fenetre.h model/fenetre/fenetre.cpp
 
 
     )

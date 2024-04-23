@@ -1,13 +1,21 @@
+#include <iostream>
+
 #include <QApplication>
+
 #include "model/constante/Constante.h"
 #include "model/operations/addition/Addition.h"
 #include "model/operations/multiplication/Multiplication.h"
 #include "model/variable/Variable.h"
 
 #include "view/graph3dview.h"
+#include "model/fenetre/fenetre.h"
 
 int main(int argc, char *argv[])
 {
+    QApplication a(argc, argv);
+    FenetrePrincipale w;
+    w.show();
+
     Constante c1(2);
     auto v1 = Variable::construct('x',0);
 
@@ -20,9 +28,9 @@ int main(int argc, char *argv[])
 
     Addition a1(&m1, &m2);
 
-    QApplication a(argc, argv);
     Graph3DView view;
     view.show();
     view.setExpression(&a1);
-    return a.exec();
+
+    return QApplication::exec();
 }
