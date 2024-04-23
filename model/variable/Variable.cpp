@@ -48,3 +48,11 @@ void Variable::changeValue(const float &val) {
 std::map<const char, Variable *> Variable::getSymbolTable() {
     return symbolTable;
 }
+
+void Variable::afficherNPI(std::ostream &flux) const {
+    //TODO implement GP2
+}
+
+void Variable::sauvegardeASCII(const std::string &n_fichier) {
+    //TODO implement GP2
+}

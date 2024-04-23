@@ -1,4 +1,3 @@
-#include <iostream>
 #include <QApplication>
 
 #include "model/constante/Constante.h"
@@ -30,7 +29,7 @@ int main(int argc, char *argv[])
     Addition a1(&m1, &m2);
 
     //gp2 :
-    string n_fichier = "expressions.txt";
+    std::string n_fichier = "expressions.txt";
     a1.sauvegardeASCII(n_fichier);
     m1.sauvegardeASCII(n_fichier);
 

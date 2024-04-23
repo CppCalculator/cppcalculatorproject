@@ -5,7 +5,6 @@
 #ifndef ADDITION_H
 #define ADDITION_H
 
-using namespace std;
 #include "../Operation.h"
 
 #include <string>
