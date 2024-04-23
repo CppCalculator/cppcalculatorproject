@@ -6,6 +6,9 @@
 #include "../../constante/Constante.h"
 
 #include <iostream>
+#include <fstream>
+#include <ostream>
+#include <string>
 
 void Division::afficherNC() {
     get_ed()->afficherNC();
@@ -21,6 +24,13 @@ void Division::afficherNPI() {
     std::cout << " / ";
 }
 
+void Division::afficherNPI(std::ostream& os) const {
+    get_eg()->afficherNPI(os);
+    os << " ";
+    get_ed()->afficherNPI(os);
+    os << " /";
+}
+
 float Division::calculer() {
     return get_ed()->calculer() / get_eg()->calculer();
 }
@@ -28,4 +38,13 @@ float Division::calculer() {
 Expression *Division::simplifier() {
     const float result = calculer();
     return new Constante(result);
+}
+void Division::sauvegardeASCII(const std::string& n_fichier) {
+    std::ofstream fichier(n_fichier);
+    if (fichier) {
+   afficherNPI(fichier); // Appel de la méthode afficherNPI de l'expression
+        fichier.close();
+    } else {
+        std::cerr << "Erreur lors de l'ouverture du fichier.\n";
+    }
 }

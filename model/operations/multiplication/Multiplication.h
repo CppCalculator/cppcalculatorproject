@@ -17,8 +17,11 @@ public:
 
     void afficherNC() override;
     void afficherNPI() override;
+    void afficherNPI(std::ostream &flux) const override;
+    void sauvegardeASCII(const std::string &n_fichier) override;
     float calculer() override;
     Expression* simplifier() override;
+
 };
 
 
