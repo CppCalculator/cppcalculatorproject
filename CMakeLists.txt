@@ -42,7 +42,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         model/operationsUnaire/logNeperien/Ln.h
         model/operationsUnaire/carre/Carre.cpp
         model/operationsUnaire/carre/Carre.h
-
+        controller/graph2dcontroller.h controller/graph2dcontroller.cpp
+        view/graph2dview.h view/graph2dview.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
