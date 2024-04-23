@@ -55,6 +55,8 @@ public:
 
     void sauvegardeASCII(const std::string& n_fichier) override;
 
+    Expression* simplifier() override;
+
 private:
     Variable(const char &name, const float &value);
 

@@ -56,3 +56,8 @@ void Variable::afficherNPI(std::ostream &flux) const {
 void Variable::sauvegardeASCII(const std::string &n_fichier) {
     //TODO implement GP2
 }
+
+Expression *Variable::simplifier() {
+    //TODO implement GP7
+    return nullptr;
+}
