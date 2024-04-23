@@ -9,11 +9,13 @@
 class Expression {
 public:
     virtual ~Expression() = default;
+
     virtual void afficherNC() = 0;
+
     virtual void afficherNPI() = 0;
+
     virtual float calculer() = 0;
 };
-
 
 
 #endif //EXPRESSION_H
