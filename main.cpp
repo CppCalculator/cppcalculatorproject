@@ -1,10 +1,12 @@
 #include <iostream>
+#include <QApplication>
 
 #include "model/constante/Constante.h"
 #include "model/operations/addition/Addition.h"
 #include "model/operations/multiplication/Multiplication.h"
+#include "view/calculator.h"
 
-int main()
+int main(int argc, char *argv[])
 {
     Constante c1(5);
     Constante c2(3);
@@ -16,5 +18,10 @@ int main()
     std::cout << "\n" ;
     r2.afficherNPI();
 
-    return 0;
+    QApplication a(argc, argv);
+
+    Calculator calculator;
+    calculator.show();
+
+    return QApplication::exec();
 }
