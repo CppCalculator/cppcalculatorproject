@@ -3,6 +3,7 @@
 //
 
 #include "Multiplication.h"
+#include "../../constante/Constante.h"
 #include <fstream>
 #include <ostream>
 #include <string>
@@ -32,6 +33,11 @@ void Multiplication::afficherNPI(std::ostream& os) const {
 
 float Multiplication::calculer() {
     return get_ed()->calculer() * get_eg()->calculer();
+}
+
+Expression *Multiplication::simplifier() {
+    const float result = calculer();
+    return new Constante(result);
 }
 
 void Multiplication::sauvegardeASCII(const std::string& n_fichier) {

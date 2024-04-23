@@ -10,7 +10,7 @@
 class Soustraction final : public Operation{
 public:
     Soustraction(Expression *m_eg, Expression *m_ed)
-        : Operation(m_eg, m_ed) {
+            : Operation(m_eg, m_ed) {
     }
 
     ~Soustraction() override = default;
@@ -18,6 +18,7 @@ public:
     void afficherNC() override;
     void afficherNPI() override;
     float calculer() override;
+    Expression* simplifier() override;
     void sauvegardeASCII(const std::string &n_fichier) override;
     void afficherNPI(std::ostream &flux) const override;
 };

@@ -22,6 +22,8 @@ public:
     virtual void afficherNPI(std::ostream& flux) const = 0;
 
     virtual void sauvegardeASCII(const std::string& n_fichier) = 0;
+
+    virtual Expression* simplifier() = 0;
 };
 
 

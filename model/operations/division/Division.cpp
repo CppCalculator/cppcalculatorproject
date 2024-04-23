@@ -3,6 +3,8 @@
 //
 
 #include "Division.h"
+#include "../../constante/Constante.h"
+
 #include <iostream>
 #include <fstream>
 #include <ostream>
@@ -33,6 +35,10 @@ float Division::calculer() {
     return get_ed()->calculer() / get_eg()->calculer();
 }
 
+Expression *Division::simplifier() {
+    const float result = calculer();
+    return new Constante(result);
+}
 void Division::sauvegardeASCII(const std::string& n_fichier) {
     std::ofstream fichier(n_fichier);
     if (fichier) {

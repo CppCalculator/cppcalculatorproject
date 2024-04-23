@@ -7,6 +7,7 @@
 #include <iostream>
 #include <ostream>
 #include <string>
+#include <memory>
 
 void Constante::afficherNC() {
     std::cout << m_valeur;
@@ -22,6 +23,10 @@ void Constante::afficherNPI(std::ostream& flux) const {
 
 float Constante::calculer() {
     return m_valeur;
+}
+
+Expression *Constante::simplifier() {
+    return new Constante(m_valeur);
 }
 
 void Constante::sauvegardeASCII( const std::string& n_fichier) {
