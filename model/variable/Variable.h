@@ -51,6 +51,10 @@ public:
      */
     static std::map<const char, Variable *> getSymbolTable();
 
+    void afficherNPI(std::ostream& flux) const override;
+
+    void sauvegardeASCII(const std::string& n_fichier) override;
+
 private:
     Variable(const char &name, const float &value);
 
