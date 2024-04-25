@@ -13,7 +13,7 @@ void Addition::afficherNC() {
     get_eg()->afficherNC();
     std::cout << " + ";
     get_ed()->afficherNC();
-    std::cout << ")\n";
+    std::cout << ")";
 }
 
 void Addition::afficherNPI() {

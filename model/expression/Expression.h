@@ -17,6 +17,7 @@ public:
     virtual float calculer() = 0;
     virtual void afficherNPI(std::ostream& flux) const = 0;
    virtual void sauvegardeASCII(const std::string& n_fichier) = 0;
+    static Expression* load_expression(const std::string& chemin);
 };
 
 
