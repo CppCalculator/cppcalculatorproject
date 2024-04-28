@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <stack>
 #include <string>
@@ -22,17 +21,17 @@ int main() {
         if (input == "p") {
             break;
         } else if (isdigit(input[0]) || (input[0] == '-' && input.size() > 1 && isdigit(input[1]))) {
-            // If the input is a number, create a Constante and push it onto the stack.
+
             expressions.push(new Constante(std::stof(input)));
         } else if (input.size() == 1) {
             char op = input[0];
-            // For an operation, pop two values off the stack, perform the operation, and push the result back on.
+
             if (expressions.size() < 2) {
                 std::cerr << "Error: Not enough operands for the operation." << std::endl;
                 return 1;
             }
-            Expression* right = expressions.top(); expressions.pop();
             Expression* left = expressions.top(); expressions.pop();
+            Expression* right = expressions.top(); expressions.pop();
 
             Operation* operation;
             switch (op) {
@@ -48,7 +47,7 @@ int main() {
         }
     }
 
-    // The final result should be the only expression left on the stack.
+
     if (expressions.size() != 1) {
         std::cerr << "Error: Invalid expression." << std::endl;
         return 1;
@@ -58,10 +57,10 @@ int main() {
     expressions.pop();
     std::cout << "The result is: " << result->calculer() << std::endl;
 
-    // Don't forget to delete the expressions to avoid memory leaks.
+
     delete result;
 
-    // Clear any remaining expressions in case of errors.
+    
     while (!expressions.empty()) {
         delete expressions.top();
         expressions.pop();
