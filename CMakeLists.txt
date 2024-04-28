@@ -17,4 +17,6 @@ add_executable(Projet main.cpp
         model/expression/Expression.cpp
         model/expression/Expression.h
         model/operations/soustraction/Soustraction.cpp
-        model/operations/soustraction/Soustraction.h)
+        model/operations/soustraction/Soustraction.h
+        model/Calculator/Calculator.cpp
+        model/Calculator/Calculator.h)
