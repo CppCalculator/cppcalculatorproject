@@ -45,17 +45,7 @@ int main(int argc, char *argv[])
     calculator.show();
 
     //gp5 test :
-
-    QLineSeries *series = new QLineSeries();
-    for (int x = -100; x <= 100; ++x)
-    {
-        v1->changeValue(x);
-        series->append(x, a1.calculer());
-    }
-
     Graph2dView view2;
-    view2.setSeries(series);
-
     Graph2dController controller(&a1, v1, &view2);
     view2.show();
     view2.resize(800, 600);

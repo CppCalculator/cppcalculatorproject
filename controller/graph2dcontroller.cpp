@@ -1,5 +1,3 @@
-// graph2dcontroller.cpp
-
 #include "graph2dcontroller.h"
 
 Graph2dController::Graph2dController(Expression *expression, Variable *variable, Graph2dView *view, QObject *parent) : QObject(parent)
@@ -10,6 +8,7 @@ Graph2dController::Graph2dController(Expression *expression, Variable *variable,
 
     connect(view->getXSlider(), &QSlider::valueChanged, this, &Graph2dController::updateSeries);
     connect(view->getYSlider(), &QSlider::valueChanged, this, &Graph2dController::updateSeries);
+    this->updateSeries();
 }
 
 void Graph2dController::updateSeries()

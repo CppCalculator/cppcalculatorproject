@@ -1,5 +1,3 @@
-// graph2dcontroller.h
-
 #ifndef GRAPH2DCONTROLLER_H
 #define GRAPH2DCONTROLLER_H
 
@@ -11,16 +9,14 @@
 class Graph2dController : public QObject
 {
 Q_OBJECT
+
 public:
     Graph2dController(Expression *expression, Variable *variable, Graph2dView *view, QObject *parent = nullptr);
-
+    void updateSeries();
+    Graph2dView *view;
 private:
     Expression *expression;
     Variable *variable;
-    Graph2dView *view;
-
-private slots:
-    void updateSeries();
 };
 
 #endif // GRAPH2DCONTROLLER_H
