@@ -1,10 +1,10 @@
-#include "Calculator.h"
+#include "Console.h"
 
-Calculator::~Calculator() {
+Console::~Console() {
     clearExpressions();
 }
 
-void Calculator::run() {
+void Console::run() {
     std::string input;
     std::cout << "Enter your expression in reverse Polish notation. Enter 'p' to process." << std::endl;
 
@@ -24,7 +24,7 @@ void Calculator::run() {
     clearExpressions();
 }
 
-void Calculator::processToken(const std::string& token) {
+void Console::processToken(const std::string& token) {
     if (isdigit(token[0]) || (token[0] == '-' && token.size() > 1 && isdigit(token[1]))) {
         expressions.push(new Constante(std::stof(token)));
     } else if (token.size() == 1) {
@@ -49,7 +49,7 @@ void Calculator::processToken(const std::string& token) {
     }
 }
 
-void Calculator::clearExpressions() {
+void Console::clearExpressions() {
     while (!expressions.empty()) {
         delete expressions.top();
         expressions.pop();

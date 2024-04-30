@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <QLineSeries>
 
-#include "model/Calculator/Calculator.h"
+#include "model/console/Console.h"
 #include "model/constante/Constante.h"
 #include "model/operations/addition/Addition.h"
 #include "model/operations/multiplication/Multiplication.h"
@@ -16,6 +16,10 @@
 
 int main(int argc, char *argv[])
 {
+    //gp1 :
+    Console console;
+    console.run();
+
     QApplication a(argc, argv);
     FenetrePrincipale w;
     w.show();
@@ -51,9 +55,7 @@ int main(int argc, char *argv[])
     view2.show();
     view2.resize(800, 600);
 
-    return QApplication::exec();
+    int exec = QApplication::exec();
 
-    //gp1 :
-    Calculator calculator;
-    calculator.run();
+    return exec;
 }
