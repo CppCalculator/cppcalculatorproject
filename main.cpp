@@ -16,9 +16,6 @@
 
 int main(int argc, char *argv[])
 {
-    //gp1 :
-    Console console;
-    console.run();
 
     QApplication a(argc, argv);
     FenetrePrincipale w;
@@ -56,6 +53,10 @@ int main(int argc, char *argv[])
     view2.resize(800, 600);
 
     int exec = QApplication::exec();
+
+    //gp1 :
+    Console console;
+    console.run();
 
     return exec;
 }

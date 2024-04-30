@@ -91,3 +91,7 @@ install(TARGETS QTProject
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(QTProject)
 endif()
+
+if(WIN32)
+    set_target_properties(QTProject PROPERTIES LINK_FLAGS "-mconsole")
+endif()
