@@ -44,7 +44,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         model/operationsUnaire/carre/Carre.h
         controller/graph2dcontroller.h controller/graph2dcontroller.cpp
         view/graph2dview.h view/graph2dview.cpp
-
+        model/console/Console.cpp
+        model/console/Console.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET QTProject APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -89,4 +90,8 @@ install(TARGETS QTProject
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(QTProject)
+endif()
+
+if(WIN32)
+    set_target_properties(QTProject PROPERTIES LINK_FLAGS "-mconsole")
 endif()
