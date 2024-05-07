@@ -13,8 +13,8 @@ class Operation : public Expression {
 
 public:
     Operation(Expression *m_eg, Expression *m_ed)
-        : m_eg(m_eg),
-          m_ed(m_ed) {
+            : m_eg(m_eg),
+              m_ed(m_ed) {
     }
 
     ~Operation() override = default;
