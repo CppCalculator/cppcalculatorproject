@@ -13,6 +13,8 @@
 #include "view/calculator.h"
 #include "view/graph2dview.h"
 #include "controller/graph2dcontroller.h"
+#include "model/utils/data.h"
+#include "model/utils/ExampleSubscriber.h"
 
 int main(int argc, char *argv[])
 {
@@ -51,6 +53,14 @@ int main(int argc, char *argv[])
     Graph2dController controller(&a1, v1, &view2);
     view2.show();
     view2.resize(800, 600);
+
+    //use the Singleton data class for the expression
+    Data &data = Data::getInstance();
+    data.updateExpression(&a1);
+
+    //with subscriber :
+    ExampleSubscriber exampleSubscriber;
+    data.updateExpression(&a1);
 
     int exec = QApplication::exec();
 

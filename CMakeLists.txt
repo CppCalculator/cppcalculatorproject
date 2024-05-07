@@ -14,6 +14,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Widgets Charts G
 
 set(PROJECT_SOURCES
         main.cpp
+        model/utils/data.cpp
+        model/utils/data.h
+        model/utils/ExampleSubscriber.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
