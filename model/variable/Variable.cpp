@@ -58,6 +58,5 @@ void Variable::sauvegardeASCII(const std::string &n_fichier) {
 }
 
 Expression *Variable::simplifier() {
-    //TODO implement GP7
-    return nullptr;
+    return new Variable(name, value);
 }

@@ -4,6 +4,7 @@
 
 #include "Addition.h"
 #include "../../constante/Constante.h"
+#include "../../variable/Variable.h"
 
 #include <fstream>
 #include <iostream>
@@ -39,10 +40,17 @@ float Addition::calculer() {
 }
 
 Expression *Addition::simplifier() {
-    const float result = calculer();
-    return new Constante(result);
-}
+    Expression* gauche = get_eg()->simplifier();
+    Expression* droite = get_ed()->simplifier();
+    auto* constGauche = dynamic_cast<Constante*>(gauche);
+    auto* constDroite = dynamic_cast<Constante*>(droite);
 
+    if (constGauche && constDroite) {
+        delete gauche; delete droite;
+        return new Constante(calculer());
+    }
+    return new Addition(gauche->simplifier(), droite->simplifier());
+}
 
 void Addition::sauvegardeASCII(const std::string& n_fichier) {
     std::ofstream fichier(n_fichier);

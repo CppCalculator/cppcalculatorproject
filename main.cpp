@@ -18,7 +18,32 @@
 
 int main(int argc, char *argv[])
 {
+    /*
+    Constante c1(3);
+    Constante c2(4);
+    Constante c3(2);
+    auto v1 = Variable::construct('a', 3);
+    auto v2 = Variable::construct('b', 2);
 
+    Addition a1(&c1, &c2);
+    Multiplication m1(&a1, &c3);
+    Addition a2(&m1, v1);
+    Division d1(&a2, v2);
+    d1.simplifier()->afficherNC();
+    */
+    /*
+    Constante c1(10);
+    Constante c2(20);
+    Constante c3(30);
+    auto v1 = Variable::construct('x', 3);
+    auto v2 = Variable::construct('y', 2);
+    Addition a1(&c1, &c1);
+    Addition a2(&a1, v1);
+    Addition a3(&c2, &c2);
+    Addition a4(&a3, v1);
+    Addition a5(&a2, &a4);
+    a5.simplifier()->afficherNC();
+    */
     QApplication a(argc, argv);
     FenetrePrincipale w;
     w.show();
@@ -30,6 +55,7 @@ int main(int argc, char *argv[])
     auto v2 = Variable::construct('y',0);
 
     Multiplication m1(&c1, v1);
+
 
     Multiplication m2(&c2, v2);
 
