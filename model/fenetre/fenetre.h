@@ -11,6 +11,7 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include "../../view/calculator.h"
+#include "../../view/graph3dview.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -27,16 +28,15 @@ public:
 
 private slots:
     /**
-    void chargerFichier();
     void enregistrerFichier();
     */
+    void chargerFichier();
     void saisirExpression();
+    void affichageGraphique3D();
     /*
     void affichageClassique();
     void affichageNPI();
     void afficherValeurExpression();
-    void affichageGraphique2D();
-    void affichageGraphique3D();
     void simplificationExpression();
     */
 
