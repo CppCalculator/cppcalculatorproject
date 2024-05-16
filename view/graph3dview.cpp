@@ -12,7 +12,7 @@ Graph3DView::Graph3DView(QWidget *parent): QWidget{parent} {
 
     // Setup the surface
     _surface = new Q3DSurface();
-    this->_surface->setMinimumSize(QSize(512, 512));
+    this->_surface->setMinimumSize(QSize(256, 256));
     this->_surface->setResizeMode(QQuickWidget::SizeRootObjectToView);
     this->_surface->activeTheme()->setType(Q3DTheme::ThemePrimaryColors);
     this->_surface->activeTheme()->setLabelsEnabled(true);

@@ -30,6 +30,7 @@ void FenetrePrincipale::createActions() {
     chargerFichierAction = new QAction(tr("&Ouvrir"), this);
     chargerFichierAction->setShortcut(QKeySequence::Open);
     chargerFichierAction->setStatusTip(tr("&Charger un fichier"));
+    connect(chargerFichierAction, &QAction::triggered, this, &FenetrePrincipale::chargerFichier);
 
     enregistrerFichierAction = new QAction(tr("&Enregistrer"), this);
     enregistrerFichierAction->setShortcut(QKeySequence::Save);
@@ -54,6 +55,7 @@ void FenetrePrincipale::createActions() {
 
     affichageGraphique3DAction = new QAction(tr("&Affichager le graphique 3D"));
     affichageGraphique3DAction->setStatusTip(tr("&Afficher le graphique 3D de l'expression"));
+    connect(affichageGraphique3DAction, &QAction::triggered, this, &FenetrePrincipale::affichageGraphique3D);
 
     simplificationExpressionAction = new QAction(tr("&Simplier l'expression"));
     simplificationExpressionAction->setStatusTip(tr("&Simplifier l'expression"));
@@ -81,8 +83,22 @@ void FenetrePrincipale::saisirExpression() {
     layout->addWidget(c);
 }
 
+
+void FenetrePrincipale::affichageGraphique3D() {
+    Graph3DView *graph3D = new Graph3DView(this);
+    layout->addWidget(graph3D);
+}
+
+void FenetrePrincipale::chargerFichier() {
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir Fichier"), "", tr("Text Files (*.txt);;All Files (*)"));
+    if (!fileName.isEmpty()) {
+        // Afficher le chemin absolu du fichier sélectionné
+        QMessageBox::information(this, tr("Chemin du fichier"), fileName);
+    }
+
 void FenetrePrincipale::affichageGraphique2D(){
     Graph2dView *g = new Graph2dView(this);
     g->resize(800,600);
     layout->addWidget(g);
+gpe3-thibaud/iteration-2
 }
