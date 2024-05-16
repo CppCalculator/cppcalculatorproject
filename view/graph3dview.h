@@ -32,7 +32,7 @@ private:
     void update() override;
     void setExpression(Expression * expression) const;
 public:
-    Graph3DView(QWidget *parent = nullptr, int minW = 512, int minH = 512);
+    explicit Graph3DView(QWidget *parent = nullptr, int minW = 512, int minH = 512);
     ~Graph3DView() override;
 signals:
 };
