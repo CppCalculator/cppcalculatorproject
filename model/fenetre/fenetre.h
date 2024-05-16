@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef FENETREPRINCIPAL_H
+#define FENETREPRINCIPAL_H
 
 #include <QContextMenuEvent>
 #include <QLabel>
@@ -43,6 +43,9 @@ private slots:
 private:
     void createActions();
     void createMenus();
+
+    QWidget *widget;
+
     QMenu *fichierMenu;
     QMenu *editionMenu;
     QMenu *outilsMenu;

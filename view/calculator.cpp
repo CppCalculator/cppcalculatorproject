@@ -33,6 +33,9 @@ Calculator::Calculator(QWidget *parent)
     display->setFont(font);
 //! [2]
 
+    mainLayout = new QGridLayout(this);
+    mainLayout->addWidget(display, 0, 0, 1, 6);
+
 //! [4]
     for (int i = 0; i < NumDigitButtons; ++i)
         digitButtons[i] = createButton(QString::number(i), &Calculator::digitClicked);

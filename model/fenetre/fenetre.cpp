@@ -2,8 +2,10 @@
 
 
 FenetrePrincipale::FenetrePrincipale() {
-    QWidget *widget = new QWidget;
+    widget = new QWidget();
     setCentralWidget(widget);
+
+    layout = new QVBoxLayout(widget);
 
     QWidget *topFiller = new QWidget;
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -14,7 +16,7 @@ FenetrePrincipale::FenetrePrincipale() {
     layout->setContentsMargins(5,5,5,5);
     layout->addWidget(topFiller);
     layout->addWidget(bottomFiller);
-    widget->setLayout(layout);
+
 
     createActions();
     createMenus();
@@ -74,6 +76,6 @@ void FenetrePrincipale::createMenus() {
 }
 
 void FenetrePrincipale::saisirExpression() {
-    Calculator c;
-    layout->addLayout(c.getLayout());
+    Calculator *c = new Calculator(widget);
+    layout->addWidget(c);
 }
