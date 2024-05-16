@@ -1,6 +1,6 @@
 #include "graph3dview.h"
 
-Graph3DView::Graph3DView(QWidget *parent): QWidget{parent} {
+Graph3DView::Graph3DView(QWidget *parent, int minW, int minH): QWidget{parent} {
     Data::getInstance().subscribe(this);
     this->_controller = new Graph3DController();
 
@@ -13,7 +13,7 @@ Graph3DView::Graph3DView(QWidget *parent): QWidget{parent} {
 
     // Setup the surface
     _surface = new Q3DSurface();
-    this->_surface->setMinimumSize(QSize(512, 512));
+    this->_surface->setMinimumSize(QSize(minW, minH));
     this->_surface->setResizeMode(QQuickWidget::SizeRootObjectToView);
     this->_surface->activeTheme()->setType(Q3DTheme::ThemePrimaryColors);
     this->_surface->activeTheme()->setLabelsEnabled(true);

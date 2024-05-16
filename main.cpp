@@ -41,8 +41,8 @@ int main(int argc, char *argv[])
     m1.sauvegardeASCII(n_fichier);
 
 
-    Graph3DView view;
-    view.show();
+    auto * view = new Graph3DView(nullptr, 512, 512);
+    view->show();
 
     Calculator calculator;
     calculator.show();
