@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
 
     Graph3DView view;
     view.show();
-    view.setExpression(&a1);
 
     Calculator calculator;
     calculator.show();

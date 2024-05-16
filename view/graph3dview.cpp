@@ -1,6 +1,7 @@
 #include "graph3dview.h"
 
 Graph3DView::Graph3DView(QWidget *parent): QWidget{parent} {
+    Data::getInstance().subscribe(this);
     this->_controller = new Graph3DController();
 
     // Widget and layouts
@@ -63,10 +64,22 @@ Graph3DView::Graph3DView(QWidget *parent): QWidget{parent} {
     this->setWindowTitle("Graph 3D");
 }
 
+Graph3DView::~Graph3DView() {
+    Data::getInstance().unsubscribe(this);
+    delete this->_controller;
+}
 
+/**
+ * @brief Set the expression to display on the graph
+ * @param expression - The expression to display
+ */
 void Graph3DView::setExpression(Expression *expression) const {
     this->_controller->setExpression(expression);
     this->setupAxisRanges();
+}
+
+void Graph3DView::update() {
+    this->setExpression(Data::getInstance().getExpression());
 }
 
 /**

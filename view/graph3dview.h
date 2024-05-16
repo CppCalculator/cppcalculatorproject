@@ -1,3 +1,4 @@
+#include "../model/utils/data.h"
 #ifndef GRAPH3DVIEW_H
 #include "../controller/graph3dcontroller.h"
 #define GRAPH3DVIEW_H
@@ -10,7 +11,7 @@
 /**
 * @brief The Graph3DView class, to display a 3D graph
 */
-class Graph3DView : public QWidget
+class Graph3DView : public QWidget, public Subscriber
 {
     Q_OBJECT
 private:
@@ -28,9 +29,11 @@ private:
     void setExportButton(QVBoxLayout *panelLayout) const;
     void exportGraph();
     void setLabelRadioButtons(QVBoxLayout *panelLayout);
+    void update() override;
+    void setExpression(Expression * expression) const;
 public:
     explicit Graph3DView(QWidget *parent = nullptr);
-    void setExpression(Expression * expression) const;
+    ~Graph3DView() override;
 signals:
 };
 
