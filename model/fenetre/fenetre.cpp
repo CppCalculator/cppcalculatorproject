@@ -8,25 +8,16 @@ FenetrePrincipale::FenetrePrincipale() {
     QWidget *topFiller = new QWidget;
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    infoLabel = new QLabel(tr("<i>Choisissez un menu, ou faites un clic-droit"));
-    infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
-    infoLabel->setAlignment(Qt::AlignCenter);
-
     QWidget *bottomFiller = new QWidget;
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QVBoxLayout *layout = new QVBoxLayout;
     layout->setContentsMargins(5,5,5,5);
     layout->addWidget(topFiller);
-    layout->addWidget(infoLabel);
     layout->addWidget(bottomFiller);
     widget->setLayout(layout);
 
     createActions();
     createMenus();
-
-    QString message = tr("Faites un clic-droit pour voir les options disponibles");
-    statusBar()->showMessage(message);
 
     setWindowTitle(tr("Expression - Menus"));
     setMinimumSize(160, 160);
@@ -44,6 +35,7 @@ void FenetrePrincipale::createActions() {
 
     saisirExpressionAction = new QAction(tr("&Saisir une expression"), this);
     saisirExpressionAction->setStatusTip(tr("&Saisir une expression"));
+    connect(saisirExpressionAction, &QAction::triggered, this, &FenetrePrincipale::saisirExpression);
 
     affichageClassiqueAction = new QAction(tr("&Afficher l'expression"));
     affichageClassiqueAction->setStatusTip(tr("&Afficher l'expression"));
@@ -79,4 +71,9 @@ void FenetrePrincipale::createMenus() {
 
     outilsMenu = menuBar()->addMenu("&Outils");
     outilsMenu->addAction(simplificationExpressionAction);
+}
+
+void FenetrePrincipale::saisirExpression() {
+    Calculator c;
+    layout->addLayout(c.getLayout());
 }

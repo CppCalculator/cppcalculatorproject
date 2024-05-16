@@ -35,19 +35,21 @@ int main(int argc, char *argv[])
 
     Addition a1(&m1, &m2);
 
-    //gp2 :
+    //gp2 test:
     std::string n_fichier = "expressions.txt";
     a1.sauvegardeASCII(n_fichier);
     m1.sauvegardeASCII(n_fichier);
 
-
+    //gp9 test:
     Graph3DView view;
     view.show();
     view.setExpression(&a1);
 
+    //gp4 test:
+    /*
     Calculator calculator;
     calculator.show();
-
+*/
     //gp5 test :
     Graph2dView view2;
     Graph2dController controller(&a1, v1, &view2);
@@ -64,9 +66,11 @@ int main(int argc, char *argv[])
 
     int exec = QApplication::exec();
 
-    //gp1 :
+    //gp1 test:
+    /*
     Console console;
     console.run();
+*/
 
     return exec;
 }

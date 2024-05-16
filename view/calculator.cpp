@@ -11,7 +11,6 @@
 #include "../model/operations/soustraction/Soustraction.h"
 //#include "expression/Expression.h"
 
-#include <QGridLayout>
 #include <QLineEdit>
 #include <QtMath>
 
@@ -61,9 +60,7 @@ Calculator::Calculator(QWidget *parent)
     Button *equalButton = createButton(tr("="), &Calculator::equalClicked);
 //! [4]
 
-//! [5]
-    QGridLayout *mainLayout = new QGridLayout;
-//! [5] //! [6]
+//! [6]
     mainLayout->setSizeConstraint(QLayout::SetFixedSize);
     mainLayout->addWidget(display, 0, 0, 1, 6);
     mainLayout->addWidget(backspaceButton, 1, 0, 1, 2);
@@ -94,9 +91,6 @@ Calculator::Calculator(QWidget *parent)
     mainLayout->addWidget(powerButton, 3, 5);
     mainLayout->addWidget(reciprocalButton, 4, 5);*/
     mainLayout->addWidget(equalButton, 5, 5);
-    setLayout(mainLayout);
-
-    setWindowTitle(tr("Calculator"));
 }
 //! [6]
 
@@ -384,3 +378,6 @@ bool Calculator::calculate(float rightOperand, const QString &pendingOperator)
 }
 //! [38]
 
+QGridLayout *Calculator::getLayout() {
+    return mainLayout;
+}

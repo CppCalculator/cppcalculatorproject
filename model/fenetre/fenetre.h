@@ -10,6 +10,7 @@
 #include <QStatusBar>
 #include <QVBoxLayout>
 #include <QWidget>
+#include "../../view/calculator.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -28,14 +29,16 @@ private slots:
     /**
     void chargerFichier();
     void enregistrerFichier();
+    */
     void saisirExpression();
+    /*
     void affichageClassique();
     void affichageNPI();
     void afficherValeurExpression();
     void affichageGraphique2D();
     void affichageGraphique3D();
     void simplificationExpression();
-*/
+    */
 
 private:
     void createActions();
@@ -53,6 +56,7 @@ private:
     QAction *affichageGraphique3DAction;
     QAction *simplificationExpressionAction;
     QLabel *infoLabel;
+    QVBoxLayout *layout = new QVBoxLayout;
 };
 
 #endif // MAINWINDOW_H

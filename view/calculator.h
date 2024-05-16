@@ -4,6 +4,7 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
+#include <QGridLayout>
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -18,6 +19,7 @@ class Calculator : public QWidget
 
 public:
     Calculator(QWidget *parent = nullptr);
+    QGridLayout *getLayout();
 
 private slots:
     void digitClicked();
@@ -62,6 +64,8 @@ private:
 //! [9]
     QLineEdit *display;
 //! [9] //! [10]
+
+    QGridLayout *mainLayout = new QGridLayout;
 
     enum { NumDigitButtons = 10 };
     Button *digitButtons[NumDigitButtons];
