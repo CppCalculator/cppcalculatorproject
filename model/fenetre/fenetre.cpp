@@ -95,10 +95,8 @@ void FenetrePrincipale::chargerFichier() {
         // Afficher le chemin absolu du fichier sélectionné
         QMessageBox::information(this, tr("Chemin du fichier"), fileName);
     }
-
+}
 void FenetrePrincipale::affichageGraphique2D(){
     Graph2dView *g = new Graph2dView(this);
-    g->resize(800,600);
     layout->addWidget(g);
-gpe3-thibaud/iteration-2
 }

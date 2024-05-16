@@ -11,7 +11,6 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include "../../view/calculator.h"
-
 #include "../../view/graph3dview.h"
 #include "../../view/graph2dview.h"
 
