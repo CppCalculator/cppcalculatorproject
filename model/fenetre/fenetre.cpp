@@ -51,6 +51,7 @@ void FenetrePrincipale::createActions() {
 
     affichageGraphique2DAction = new QAction(tr("&Afficher le graphique 2D"));
     affichageGraphique2DAction->setStatusTip(tr("&Afficher le graphique 2D de l'expression"));
+    connect(affichageGraphique2DAction, &QAction::triggered, this, &FenetrePrincipale::affichageGraphique2D);
 
     affichageGraphique3DAction = new QAction(tr("&Affichager le graphique 3D"));
     affichageGraphique3DAction->setStatusTip(tr("&Afficher le graphique 3D de l'expression"));
@@ -82,6 +83,7 @@ void FenetrePrincipale::saisirExpression() {
     layout->addWidget(c);
 }
 
+
 void FenetrePrincipale::affichageGraphique3D() {
     Graph3DView *graph3D = new Graph3DView(this);
     layout->addWidget(graph3D);
@@ -93,4 +95,10 @@ void FenetrePrincipale::chargerFichier() {
         // Afficher le chemin absolu du fichier sélectionné
         QMessageBox::information(this, tr("Chemin du fichier"), fileName);
     }
+
+void FenetrePrincipale::affichageGraphique2D(){
+    Graph2dView *g = new Graph2dView(this);
+    g->resize(800,600);
+    layout->addWidget(g);
+gpe3-thibaud/iteration-2
 }
