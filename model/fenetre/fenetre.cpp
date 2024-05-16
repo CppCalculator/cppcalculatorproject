@@ -50,6 +50,7 @@ void FenetrePrincipale::createActions() {
 
     affichageGraphique2DAction = new QAction(tr("&Afficher le graphique 2D"));
     affichageGraphique2DAction->setStatusTip(tr("&Afficher le graphique 2D de l'expression"));
+    connect(affichageGraphique2DAction, &QAction::triggered, this, &FenetrePrincipale::affichageGraphique2D);
 
     affichageGraphique3DAction = new QAction(tr("&Affichager le graphique 3D"));
     affichageGraphique3DAction->setStatusTip(tr("&Afficher le graphique 3D de l'expression"));
@@ -78,4 +79,10 @@ void FenetrePrincipale::createMenus() {
 void FenetrePrincipale::saisirExpression() {
     Calculator *c = new Calculator(widget);
     layout->addWidget(c);
+}
+
+void FenetrePrincipale::affichageGraphique2D(){
+    Graph2dView *g = new Graph2dView(this);
+    g->resize(800,600);
+    layout->addWidget(g);
 }
