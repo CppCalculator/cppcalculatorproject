@@ -1,7 +1,6 @@
 #ifndef PROJET_VARIABLE_H
 #define PROJET_VARIABLE_H
 
-
 #include <iostream>
 #include <map>
 #include "../expression/Expression.h"
@@ -51,11 +50,11 @@ public:
      */
     static std::map<const char, Variable *> getSymbolTable();
 
-    void afficherNPI(std::ostream& flux) const ;
+    void afficherNPI(std::ostream& flux) const override;
 
-    void sauvegardeASCII(const std::string& n_fichier) ;
+    void sauvegardeASCII(const std::string& n_fichier) override;
 
-    Expression* simplifier() ;
+    Expression* simplifier() override;
 
 private:
     Variable(const char &name, const float &value);
@@ -66,6 +65,5 @@ private:
 
     static std::map<const char, Variable *> symbolTable;
 };
-
 
 #endif //PROJET_VARIABLE_H

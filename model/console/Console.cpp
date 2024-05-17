@@ -1,11 +1,11 @@
 #include <sstream>
-#include "Calculator.h"
+#include "Console.h"
 
-Calculator::~Calculator() {
+Console::~Console() {
     clearExpressions();
 }
 
-void Calculator::run() {
+void Console::run() {
     std::string line;
     std::cout << "Enter your expression in reverse Polish notation. Enter 'p' to process." << std::endl;
 
@@ -35,7 +35,7 @@ void Calculator::run() {
 }
 
 
-void Calculator::processToken(const std::string& token) {
+void Console::processToken(const std::string& token) {
 
     if (token == "p"){
         return;
@@ -79,7 +79,7 @@ void Calculator::processToken(const std::string& token) {
     }
 }
 
-void Calculator::clearExpressions() {
+void Console::clearExpressions() {
     while (!expressions.empty()) {
         delete expressions.top();
         expressions.pop();

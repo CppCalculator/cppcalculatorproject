@@ -1,4 +1,3 @@
-// Calculator.h
 
 #include <iostream>
 #include <stack>
@@ -12,10 +11,10 @@
 #include "../expression/Expression.h"
 #include "../variable/Variable.h"
 
-class Calculator {
+class Console {
 public:
-    Calculator() = default;
-    ~Calculator();
+    Console() = default;
+    ~Console();
     void run();
 
 private:

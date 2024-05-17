@@ -10,14 +10,17 @@
 class Division: public Operation{
 public:
     Division(Expression *m_eg, Expression *m_ed)
-        : Operation(m_eg, m_ed) {
+            : Operation(m_eg, m_ed) {
     }
 
     ~Division() override = default;
 
     void afficherNC() override;
     void afficherNPI() override;
+    void afficherNPI(std::ostream &flux) const override;
+    void sauvegardeASCII( const std::string &n_fichier) override;
     float calculer() override;
+    Expression* simplifier() override;
 };
 
 
