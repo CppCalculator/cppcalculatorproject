@@ -8,7 +8,19 @@
 #include <cmath>
 
 using namespace std;
+#include "../../constante/Constante.h"
+#include <iostream>
+#include <ostream>
+#include <string>
 
+void Racine::afficherNPI(std::ostream& os) const {
+}
+
+Expression *Racine::simplifier() {
+}
+
+void Racine::sauvegardeASCII(const std::string& n_fichier) {
+}
 void Racine::afficherNC(){
     cout << "sqrt" ;
     get_e()->afficherNC();

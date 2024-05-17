@@ -5,7 +5,19 @@
 #include "Inverse.h"
 
 #include <iostream>
+#include "../../constante/Constante.h"
+#include <iostream>
+#include <ostream>
+#include <string>
 
+void Inverse::afficherNPI(std::ostream& os) const {
+}
+
+Expression *Inverse::simplifier() {
+}
+
+void Inverse::sauvegardeASCII(const std::string& n_fichier) {
+}
 using namespace std;
 
 void Inverse::afficherNC(){

@@ -6,7 +6,19 @@
 
 #include <iostream>
 #include <cmath>
+#include "../../constante/Constante.h"
+#include <iostream>
+#include <ostream>
+#include <string>
 
+void Ln::afficherNPI(std::ostream& os) const {
+}
+
+Expression *Ln::simplifier() {
+}
+
+void Ln::sauvegardeASCII(const std::string& n_fichier) {
+}
 using namespace std;
 
 void Ln::afficherNC() {

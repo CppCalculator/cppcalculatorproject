@@ -33,8 +33,9 @@ void Soustraction::afficherNPI(std::ostream& os) const {
 }
 
 float Soustraction::calculer() {
-    return get_ed()->calculer() - get_eg()->calculer();
+    return get_eg()->calculer() - get_ed()->calculer();
 }
+
 
 Expression *Soustraction::simplifier() {
     const float result = calculer();
