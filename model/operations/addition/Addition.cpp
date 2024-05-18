@@ -19,6 +19,14 @@ void Addition::afficherNC() {
     std::cout << ")\n";
 }
 
+void Addition::afficherNC(std::ostream& os) const {
+    os << "(";
+    get_eg()->afficherNC(os);
+    os << " +";
+    get_ed()->afficherNC(os);
+    os << ")\n";
+}
+
 void Addition::afficherNPI() {
     get_eg()->afficherNPI();
     std::cout << " ";

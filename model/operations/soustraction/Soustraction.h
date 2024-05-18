@@ -16,11 +16,18 @@ public:
     ~Soustraction() override = default;
 
     void afficherNC() override;
+
     void afficherNPI() override;
+
     float calculer() override;
+
     Expression* simplifier() override;
+
     void sauvegardeASCII(const std::string &n_fichier) override;
+
     void afficherNPI(std::ostream &flux) const override;
+
+    void afficherNC(std::ostream& flux) const override;
 };
 
 

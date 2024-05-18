@@ -6,6 +6,8 @@
 
 #include <QGridLayout>
 #include <QWidget>
+#include <iostream>
+#include "../model/Expression/Expression.h"
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
@@ -20,6 +22,8 @@ class Calculator : public QWidget
 public:
     Calculator(QWidget *parent = nullptr);
     QGridLayout *getLayout();
+    void editDisplay(float expression);
+    void editDisplay(std::string expression);
 
 private slots:
     void digitClicked();

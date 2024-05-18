@@ -384,3 +384,19 @@ bool Calculator::calculate(float rightOperand, const QString &pendingOperator)
 QGridLayout *Calculator::getLayout() {
     return mainLayout;
 }
+
+void Calculator::editDisplay(float expression) {
+    std::cout << "Inside editDisplay with float const as parameter" << std::endl;
+    char buffer[64];
+    int ret = snprintf(buffer, sizeof buffer, "%f", expression);
+    std::cout << ret << std::endl;
+    std::cout << sizeof(buffer) << std::endl;
+    if(ret == sizeof(buffer)) {
+        display->setText(tr(buffer));
+    }
+}
+
+void Calculator::editDisplay(std::string expression) {
+    std::cout << "Inside editDisplay with string const as parameter" << std::endl;
+    display->setText(expression.c_str());
+}

@@ -18,6 +18,14 @@ void Soustraction::afficherNC() {
     std::cout << ")\n";
 }
 
+void Soustraction::afficherNC(std::ostream& os) const {
+    os << "(";
+    get_eg()->afficherNC(os);
+    os << "-";
+    get_ed()->afficherNC(os);
+    os << ")\n";
+}
+
 void Soustraction::afficherNPI() {
     get_ed()->afficherNPI();
     std::cout << " ";
@@ -40,6 +48,7 @@ Expression *Soustraction::simplifier() {
     const float result = calculer();
     return new Constante(result);
 }
+
 void Soustraction::sauvegardeASCII(const std::string& n_fichier) {
     std::ofstream fichier(n_fichier);
     if (fichier) {

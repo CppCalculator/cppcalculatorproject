@@ -19,10 +19,17 @@ public:
     ~Constante() override = default;
 
     float calculer() override;
+
     void afficherNC() override;
+
     void afficherNPI() override;
+
     Expression* simplifier() override;
+
+    void afficherNC(std::ostream &flux) const override;
+
     void afficherNPI(std::ostream &flux) const override;
+
     void sauvegardeASCII(const std::string &n_fichier) override;
 
 };

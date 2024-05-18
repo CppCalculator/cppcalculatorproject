@@ -41,6 +41,7 @@ void FenetrePrincipale::createActions() {
 
     affichageClassiqueAction = new QAction(tr("&Afficher l'expression"));
     affichageClassiqueAction->setStatusTip(tr("&Afficher l'expression"));
+    connect(affichageClassiqueAction, &QAction::triggered, this, &FenetrePrincipale::afficherClassique);
 
     affichageNPIAction = new QAction(tr("&Afficher l'expresion en NPI"));
     affichageNPIAction->setStatusTip(tr("&Afficher de l'expression en notation Polonaise inversée"));
@@ -76,6 +77,53 @@ void FenetrePrincipale::createMenus() {
 }
 
 void FenetrePrincipale::saisirExpression() {
-    Calculator *c = new Calculator(widget);
-    layout->addWidget(c);
+    if(calculatorView == NULL) {
+        calculatorView = new Calculator(widget);
+        layout->addWidget(calculatorView);
+    }
+}
+
+void FenetrePrincipale::afficherClassique() {
+    if(calculatorView == NULL) {
+        calculatorView = new Calculator(widget);
+        layout->addWidget(calculatorView);
+    }
+    Data &data = Data::getInstance();
+    std::stringstream dataStringStream;
+    data.getExpression()->afficherNC(dataStringStream);
+    std::string dataFromStringStream;
+    dataStringStream >> dataFromStringStream;
+    std::cout << dataFromStringStream << std::endl;
+    calculatorView->editDisplay(dataFromStringStream);
+}
+
+void FenetrePrincipale::afficherNPI() {
+    if(calculatorView == NULL) {
+        calculatorView = new Calculator(widget);
+        layout->addWidget(calculatorView);
+    }
+    Data &data = Data::getInstance();
+    std::stringstream dataStringStream;
+    data.getExpression()->afficherNPI(dataStringStream);
+    std::string dataFromStringStream;
+    dataStringStream >> dataFromStringStream;
+    calculatorView->editDisplay(dataFromStringStream);
+}
+
+void FenetrePrincipale::afficherValeurExpression() {
+    if(calculatorView == NULL) {
+        calculatorView = new Calculator(widget);
+        layout->addWidget(calculatorView);
+    }
+    Data &data = Data::getInstance();
+    calculatorView->editDisplay(data.getExpression()->calculer());
+}
+
+void FenetrePrincipale::simplifierExpression() {
+    if(calculatorView == NULL) {
+        calculatorView = new Calculator(widget);
+        layout->addWidget(calculatorView);
+    }
+    Data &data = Data::getInstance();
+    data.updateExpression(data.getExpression()->simplifier());
 }

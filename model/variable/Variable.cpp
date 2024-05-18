@@ -49,6 +49,10 @@ std::map<const char, Variable *> Variable::getSymbolTable() {
     return symbolTable;
 }
 
+void Variable::afficherNC(std::ostream &flux) const {
+    //TODO implement GP2
+}
+
 void Variable::afficherNPI(std::ostream &flux) const {
     //TODO implement GP2
 }
