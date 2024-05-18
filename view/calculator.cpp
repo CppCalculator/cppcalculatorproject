@@ -47,19 +47,10 @@ Calculator::Calculator(QWidget *parent)
     Button *clearButton = createButton(tr("Clear"), &Calculator::clear);
     Button *clearAllButton = createButton(tr("Clear All"), &Calculator::clearAll);
 
-    /*Button *clearMemoryButton = createButton(tr("MC"), &Calculator::clearMemory);
-    Button *readMemoryButton = createButton(tr("MR"), &Calculator::readMemory);
-    Button *setMemoryButton = createButton(tr("MS"), &Calculator::setMemory);
-    Button *addToMemoryButton = createButton(tr("M+"), &Calculator::addToMemory);*/
-
     Button *divisionButton = createButton(tr("\303\267"), &Calculator::multiplicativeOperatorClicked);
     Button *timesButton = createButton(tr("\303\227"), &Calculator::multiplicativeOperatorClicked);
     Button *minusButton = createButton(tr("-"), &Calculator::additiveOperatorClicked);
     Button *plusButton = createButton(tr("+"), &Calculator::additiveOperatorClicked);
-
-    /*Button *squareRootButton = createButton(tr("Sqrt"), &Calculator::unaryOperatorClicked);
-    Button *powerButton = createButton(tr("x\302\262"), &Calculator::unaryOperatorClicked);
-    Button *reciprocalButton = createButton(tr("1/x"), &Calculator::unaryOperatorClicked);*/
     Button *equalButton = createButton(tr("="), &Calculator::equalClicked);
 //! [4]
 
@@ -69,11 +60,6 @@ Calculator::Calculator(QWidget *parent)
     mainLayout->addWidget(backspaceButton, 1, 0, 1, 2);
     mainLayout->addWidget(clearButton, 1, 2, 1, 2);
     mainLayout->addWidget(clearAllButton, 1, 4, 1, 2);
-
-    /*mainLayout->addWidget(clearMemoryButton, 2, 0);
-    mainLayout->addWidget(readMemoryButton, 3, 0);
-    mainLayout->addWidget(setMemoryButton, 4, 0);
-    mainLayout->addWidget(addToMemoryButton, 5, 0);*/
 
     for (int i = 1; i < NumDigitButtons; ++i) {
         int row = ((9 - i) / 3) + 2;
@@ -89,10 +75,6 @@ Calculator::Calculator(QWidget *parent)
     mainLayout->addWidget(timesButton, 3, 4);
     mainLayout->addWidget(minusButton, 4, 4);
     mainLayout->addWidget(plusButton, 5, 4);
-
-    /*mainLayout->addWidget(squareRootButton, 2, 5);
-    mainLayout->addWidget(powerButton, 3, 5);
-    mainLayout->addWidget(reciprocalButton, 4, 5);*/
     mainLayout->addWidget(equalButton, 5, 5);
 }
 //! [6]

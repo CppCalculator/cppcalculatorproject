@@ -15,6 +15,8 @@
 #include "../../view/calculator.h"
 #include "../expression/Expression.h"
 #include "../utils/data.h"
+#include "../../view/graph3dview.h"
+#include "../../view/graph2dview.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -31,17 +33,15 @@ public:
 
 private slots:
     /**
-    void chargerFichier();
     void enregistrerFichier();
     */
+    void chargerFichier();
     void saisirExpression();
     void afficherClassique();
     void afficherNPI();
     void afficherValeurExpression();
-    /*
     void affichageGraphique2D();
     void affichageGraphique3D();
-*/
     void simplifierExpression();
 
 private:
