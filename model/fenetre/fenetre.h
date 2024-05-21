@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef FENETREPRINCIPAL_H
+#define FENETREPRINCIPAL_H
 
 #include <QContextMenuEvent>
 #include <QLabel>
@@ -10,6 +10,9 @@
 #include <QStatusBar>
 #include <QVBoxLayout>
 #include <QWidget>
+#include "../../view/calculator.h"
+#include "../../view/graph3dview.h"
+#include "../../view/graph2dview.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -26,20 +29,21 @@ public:
 
 private slots:
     /**
-    void chargerFichier();
     void enregistrerFichier();
+    */
+    void chargerFichier();
     void saisirExpression();
-    void affichageClassique();
-    void affichageNPI();
-    void afficherValeurExpression();
-    void affichageGraphique2D();
     void affichageGraphique3D();
-    void simplificationExpression();
-*/
+    void affichageGraphique2D();
+
+
 
 private:
     void createActions();
     void createMenus();
+
+    QWidget *widget;
+
     QMenu *fichierMenu;
     QMenu *editionMenu;
     QMenu *outilsMenu;
@@ -53,6 +57,7 @@ private:
     QAction *affichageGraphique3DAction;
     QAction *simplificationExpressionAction;
     QLabel *infoLabel;
+    QVBoxLayout *layout = new QVBoxLayout;
 };
 
 #endif // MAINWINDOW_H

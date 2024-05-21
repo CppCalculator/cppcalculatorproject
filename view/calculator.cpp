@@ -17,7 +17,6 @@
 #include "../model/operationsUnaire/racine/Racine.h"
 #include "../model/variable/Variable.h"
 
-#include <QGridLayout>
 #include <QLineEdit>
 #include <QtMath>
 #include <QDebug>
@@ -42,6 +41,10 @@ Calculator::Calculator(QWidget *parent)
     font.setPointSize(font.pointSize() + 8);
     display->setFont(font);
 
+    mainLayout = new QGridLayout(this);
+    mainLayout->addWidget(display, 0, 0, 1, 6);
+
+//! [4]
     for (int i = 0; i < NumDigitButtons; ++i)
         digitButtons[i] = createButton(QString::number(i), &Calculator::digitClicked);
 
@@ -55,7 +58,6 @@ Calculator::Calculator(QWidget *parent)
     Button *timesButton = createButton(tr("\303\227"), &Calculator::multiplicativeOperatorClicked);
     Button *minusButton = createButton(tr("-"), &Calculator::additiveOperatorClicked);
     Button *plusButton = createButton(tr("+"), &Calculator::additiveOperatorClicked);
-
     Button *squareRootButton = createButton(tr("Sqrt"), &Calculator::unaryOperatorClicked);
     Button *powerButton = createButton(tr("x\302\272y"), &Calculator::binaryOperatorClicked);
     Button *reciprocalButton = createButton(tr("1/x"), &Calculator::unaryOperatorClicked);
@@ -463,3 +465,6 @@ void Calculator::abortOperation()
 
 
 
+QGridLayout *Calculator::getLayout() {
+    return mainLayout;
+}

@@ -1,6 +1,7 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
+#include <QGridLayout>
 #include <QWidget>
 #include "../model/variable/Variable.h"
 
@@ -15,6 +16,7 @@ class Calculator : public QWidget
 
 public:
     Calculator(QWidget *parent = nullptr);
+    QGridLayout *getLayout();
 
 private slots:
     void digitClicked();
@@ -48,6 +50,8 @@ private:
 
     bool waitingForOperand;
     QLineEdit *display;
+
+    QGridLayout *mainLayout = new QGridLayout;
 
     enum { NumDigitButtons = 10 };
     Button *digitButtons[NumDigitButtons];

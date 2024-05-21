@@ -2,31 +2,24 @@
 
 
 FenetrePrincipale::FenetrePrincipale() {
-    QWidget *widget = new QWidget;
+    widget = new QWidget();
     setCentralWidget(widget);
+
+    layout = new QVBoxLayout(widget);
 
     QWidget *topFiller = new QWidget;
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    infoLabel = new QLabel(tr("<i>Choisissez un menu, ou faites un clic-droit"));
-    infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
-    infoLabel->setAlignment(Qt::AlignCenter);
-
     QWidget *bottomFiller = new QWidget;
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QVBoxLayout *layout = new QVBoxLayout;
     layout->setContentsMargins(5,5,5,5);
     layout->addWidget(topFiller);
-    layout->addWidget(infoLabel);
     layout->addWidget(bottomFiller);
-    widget->setLayout(layout);
+
 
     createActions();
     createMenus();
-
-    QString message = tr("Faites un clic-droit pour voir les options disponibles");
-    statusBar()->showMessage(message);
 
     setWindowTitle(tr("Expression - Menus"));
     setMinimumSize(160, 160);
@@ -37,6 +30,7 @@ void FenetrePrincipale::createActions() {
     chargerFichierAction = new QAction(tr("&Ouvrir"), this);
     chargerFichierAction->setShortcut(QKeySequence::Open);
     chargerFichierAction->setStatusTip(tr("&Charger un fichier"));
+    connect(chargerFichierAction, &QAction::triggered, this, &FenetrePrincipale::chargerFichier);
 
     enregistrerFichierAction = new QAction(tr("&Enregistrer"), this);
     enregistrerFichierAction->setShortcut(QKeySequence::Save);
@@ -44,6 +38,7 @@ void FenetrePrincipale::createActions() {
 
     saisirExpressionAction = new QAction(tr("&Saisir une expression"), this);
     saisirExpressionAction->setStatusTip(tr("&Saisir une expression"));
+    connect(saisirExpressionAction, &QAction::triggered, this, &FenetrePrincipale::saisirExpression);
 
     affichageClassiqueAction = new QAction(tr("&Afficher l'expression"));
     affichageClassiqueAction->setStatusTip(tr("&Afficher l'expression"));
@@ -56,9 +51,11 @@ void FenetrePrincipale::createActions() {
 
     affichageGraphique2DAction = new QAction(tr("&Afficher le graphique 2D"));
     affichageGraphique2DAction->setStatusTip(tr("&Afficher le graphique 2D de l'expression"));
+    connect(affichageGraphique2DAction, &QAction::triggered, this, &FenetrePrincipale::affichageGraphique2D);
 
     affichageGraphique3DAction = new QAction(tr("&Affichager le graphique 3D"));
     affichageGraphique3DAction->setStatusTip(tr("&Afficher le graphique 3D de l'expression"));
+    connect(affichageGraphique3DAction, &QAction::triggered, this, &FenetrePrincipale::affichageGraphique3D);
 
     simplificationExpressionAction = new QAction(tr("&Simplier l'expression"));
     simplificationExpressionAction->setStatusTip(tr("&Simplifier l'expression"));
@@ -79,4 +76,27 @@ void FenetrePrincipale::createMenus() {
 
     outilsMenu = menuBar()->addMenu("&Outils");
     outilsMenu->addAction(simplificationExpressionAction);
+}
+
+void FenetrePrincipale::saisirExpression() {
+    Calculator *c = new Calculator(widget);
+    layout->addWidget(c);
+}
+
+
+void FenetrePrincipale::affichageGraphique3D() {
+    Graph3DView *graph3D = new Graph3DView(this);
+    layout->addWidget(graph3D);
+}
+
+void FenetrePrincipale::chargerFichier() {
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir Fichier"), "", tr("Text Files (*.txt);;All Files (*)"));
+    if (!fileName.isEmpty()) {
+        // Afficher le chemin absolu du fichier sélectionné
+        QMessageBox::information(this, tr("Chemin du fichier"), fileName);
+    }
+}
+void FenetrePrincipale::affichageGraphique2D(){
+    Graph2dView *g = new Graph2dView(this);
+    layout->addWidget(g);
 }
