@@ -33,6 +33,7 @@ Expression *Constante::simplifier() {
     return new Constante(m_valeur);
 }
 
+
 void Constante::sauvegardeASCII( const std::string& n_fichier) {
     std::ofstream fichier(n_fichier);
     if (fichier) {

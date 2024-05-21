@@ -44,8 +44,16 @@ float Division::calculer() {
 }
 
 Expression *Division::simplifier() {
-    const float result = calculer();
-    return new Constante(result);
+    Expression* gauche = get_eg()->simplifier();
+    Expression* droite = get_ed()->simplifier();
+    auto* constGauche = dynamic_cast<Constante*>(gauche);
+    auto* constDroite = dynamic_cast<Constante*>(droite);
+
+    if (constGauche && constDroite) {
+        delete gauche; delete droite;
+        return new Constante(calculer());
+    }
+    return new Division(droite->simplifier(), gauche->simplifier());
 }
 void Division::sauvegardeASCII(const std::string& n_fichier) {
     std::ofstream fichier(n_fichier);
