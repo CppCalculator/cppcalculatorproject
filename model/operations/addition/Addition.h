@@ -25,6 +25,8 @@ public:
 
     Expression* simplifier() override;
 
+    void afficherNC(std::ostream& flux) const override;
+
     void afficherNPI(std::ostream& flux) const override;
 
     void sauvegardeASCII(const std::string& n_fichier) override;

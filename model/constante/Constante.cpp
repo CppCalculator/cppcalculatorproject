@@ -13,6 +13,10 @@ void Constante::afficherNC() {
     std::cout << m_valeur;
 }
 
+void Constante::afficherNC(std::ostream& flux) const {
+    flux << m_valeur;
+}
+
 void Constante::afficherNPI() {
     std::cout << m_valeur << " ";
 }

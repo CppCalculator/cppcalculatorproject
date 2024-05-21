@@ -5,26 +5,34 @@
 #include "button.h"
 #include "../model/constante/Constante.h"
 #include "../model/operations/addition/Addition.h"
-//#include "operations/Operation.h"
 #include "../model/operations/division/Division.h"
 #include "../model/operations/multiplication/Multiplication.h"
 #include "../model/operations/soustraction/Soustraction.h"
-//#include "expression/Expression.h"
+#include "../model/operations/puissance/Puissance.h"
+#include "../model/operationsUnaire/absolue/Absolue.h"
+#include "../model/operationsUnaire/carre/Carre.h"
+#include "../model/operationsUnaire/inverse/Inverse.h"
+#include "../model/operationsUnaire/logNeperien/Ln.h"
+#include "../model/operationsUnaire/oppose/Oppose.h"
+#include "../model/operationsUnaire/racine/Racine.h"
+#include "../model/variable/Variable.h"
 
-#include <QGridLayout>
 #include <QLineEdit>
 #include <QtMath>
+#include <QDebug>
+#include <QInputDialog>
+#include <QDir>
+#include <QMessageBox>
+#include <QRegularExpression>
+#include <QStack>
 
 //! [0]
 Calculator::Calculator(QWidget *parent)
-    : QWidget(parent), sumInMemory(0.0), sumSoFar(0.0)
-    , factorSoFar(0.0), waitingForOperand(true)
+        : QWidget(parent), sumSoFar(0.0), powerSoFar(0.0)
+        , factorSoFar(0.0), waitingForOperand(true)
 {
-//! [0]
 
-//! [1]
     display = new QLineEdit("0");
-//! [1] //! [2]
     display->setReadOnly(true);
     display->setAlignment(Qt::AlignRight);
     display->setMaxLength(15);
@@ -32,48 +40,39 @@ Calculator::Calculator(QWidget *parent)
     QFont font = display->font();
     font.setPointSize(font.pointSize() + 8);
     display->setFont(font);
-//! [2]
 
-//! [4]
+    mainLayout = new QGridLayout(this);
+
     for (int i = 0; i < NumDigitButtons; ++i)
         digitButtons[i] = createButton(QString::number(i), &Calculator::digitClicked);
 
     Button *pointButton = createButton(tr("."), &Calculator::pointClicked);
-    Button *changeSignButton = createButton(tr("\302\261"), &Calculator::changeSignClicked);
 
     Button *backspaceButton = createButton(tr("Backspace"), &Calculator::backspaceClicked);
     Button *clearButton = createButton(tr("Clear"), &Calculator::clear);
     Button *clearAllButton = createButton(tr("Clear All"), &Calculator::clearAll);
 
-    /*Button *clearMemoryButton = createButton(tr("MC"), &Calculator::clearMemory);
-    Button *readMemoryButton = createButton(tr("MR"), &Calculator::readMemory);
-    Button *setMemoryButton = createButton(tr("MS"), &Calculator::setMemory);
-    Button *addToMemoryButton = createButton(tr("M+"), &Calculator::addToMemory);*/
-
     Button *divisionButton = createButton(tr("\303\267"), &Calculator::multiplicativeOperatorClicked);
     Button *timesButton = createButton(tr("\303\227"), &Calculator::multiplicativeOperatorClicked);
     Button *minusButton = createButton(tr("-"), &Calculator::additiveOperatorClicked);
     Button *plusButton = createButton(tr("+"), &Calculator::additiveOperatorClicked);
-
-    /*Button *squareRootButton = createButton(tr("Sqrt"), &Calculator::unaryOperatorClicked);
-    Button *powerButton = createButton(tr("x\302\262"), &Calculator::unaryOperatorClicked);
-    Button *reciprocalButton = createButton(tr("1/x"), &Calculator::unaryOperatorClicked);*/
+    Button *squareRootButton = createButton(tr("Sqrt"), &Calculator::unaryOperatorClicked);
+    Button *powerButton = createButton(tr("x\302\272y"), &Calculator::binaryOperatorClicked);
+    Button *reciprocalButton = createButton(tr("1/x"), &Calculator::unaryOperatorClicked);
     Button *equalButton = createButton(tr("="), &Calculator::equalClicked);
-//! [4]
 
-//! [5]
-    QGridLayout *mainLayout = new QGridLayout;
-//! [5] //! [6]
+    Button *absButton = createButton(tr("|x|"), &Calculator::unaryOperatorClicked);
+    Button *squareButton = createButton(tr("x²"), &Calculator::unaryOperatorClicked);
+    Button *lnButton = createButton(tr("ln(x)"), &Calculator::unaryOperatorClicked);
+    Button *negateButton = createButton(tr("±x"), &Calculator::unaryOperatorClicked);
+    Button *variableButtonx = createButton(tr("X"), &Calculator::variableClicked);
+    Button *variableButtony = createButton(tr("Y"), &Calculator::variableClicked);
+
     mainLayout->setSizeConstraint(QLayout::SetFixedSize);
     mainLayout->addWidget(display, 0, 0, 1, 6);
     mainLayout->addWidget(backspaceButton, 1, 0, 1, 2);
-    mainLayout->addWidget(clearButton, 1, 2, 1, 2);
-    mainLayout->addWidget(clearAllButton, 1, 4, 1, 2);
-
-    /*mainLayout->addWidget(clearMemoryButton, 2, 0);
-    mainLayout->addWidget(readMemoryButton, 3, 0);
-    mainLayout->addWidget(setMemoryButton, 4, 0);
-    mainLayout->addWidget(addToMemoryButton, 5, 0);*/
+    mainLayout->addWidget(clearButton, 1, 2);
+    mainLayout->addWidget(clearAllButton, 1, 3, 1, 2);
 
     for (int i = 1; i < NumDigitButtons; ++i) {
         int row = ((9 - i) / 3) + 2;
@@ -83,118 +82,175 @@ Calculator::Calculator(QWidget *parent)
 
     mainLayout->addWidget(digitButtons[0], 5, 1);
     mainLayout->addWidget(pointButton, 5, 2);
-    mainLayout->addWidget(changeSignButton, 5, 3);
 
     mainLayout->addWidget(divisionButton, 2, 4);
     mainLayout->addWidget(timesButton, 3, 4);
     mainLayout->addWidget(minusButton, 4, 4);
-    mainLayout->addWidget(plusButton, 5, 4);
+    mainLayout->addWidget(plusButton, 5, 3);
 
-    /*mainLayout->addWidget(squareRootButton, 2, 5);
+    mainLayout->addWidget(squareRootButton, 2, 5);
     mainLayout->addWidget(powerButton, 3, 5);
-    mainLayout->addWidget(reciprocalButton, 4, 5);*/
-    mainLayout->addWidget(equalButton, 5, 5);
-    setLayout(mainLayout);
+    mainLayout->addWidget(reciprocalButton, 4, 5);
+    mainLayout->addWidget(equalButton, 5, 4);
 
-    setWindowTitle(tr("Calculator"));
+    mainLayout->addWidget(absButton, 2, 6);
+    mainLayout->addWidget(squareButton, 3, 6);
+    mainLayout->addWidget(lnButton, 4, 6);
+    mainLayout->addWidget(negateButton, 5, 5);
+    mainLayout->addWidget(variableButtonx, 1, 5);
+    mainLayout->addWidget(variableButtony, 1, 6);
 }
-//! [6]
 
-//! [7]
-void Calculator::digitClicked()
-{
-    Button *clickedButton = qobject_cast<Button *>(sender());
-    int digitValue = clickedButton->text().toInt();
-    Constante c1(digitValue);
-    if (display->text() == "0" && c1.calculer() == 0.0)
-        return;
+void Calculator::variableClicked() {
+    bool ok;
+    QString text = QInputDialog::getText(this, tr("Entrée de variable"),
+                                         tr("Entrez le nom de la variable:"), QLineEdit::Normal,
+                                         QString(), &ok);
+    if (ok && !text.isEmpty()) {
+        QChar variableName = text[0];
+        if (!variableName.isLetter()) {
+            QMessageBox::warning(this, tr("Erreur"), tr("Le nom de la variable doit être une lettre."));
+            return;
+        }
 
-    if (waitingForOperand) {
+        qDebug() << "Nom de la variable entré:" << variableName;
+        double value = QInputDialog::getDouble(this, tr("Valeur de la variable"),
+                                               tr("Entrez la valeur de la variable %1:").arg(variableName),
+                                               0, -2147483647, 2147483647, 2, &ok);
+        if (ok) {
+            qDebug() << "Construction de la variable:" << variableName << "avec la valeur:" << value;
+            Variable* variable = Variable::construct(variableName.toLatin1(), value);
+            handleVariableInput(variable); // Passer la variable à handleVariableInput
+        } else {
+            qDebug() << "L'utilisateur a annulé la saisie de la valeur de la variable.";
+        }
+    } else {
+        qDebug() << "L'utilisateur a annulé la saisie du nom de la variable ou le nom est vide.";
+    }
+}
+
+void Calculator::handleVariableInput(Variable *variable) {
+    QString displayText = display->text();
+    if (displayText == "0" || waitingForOperand) {
         display->clear();
-        waitingForOperand = false;
     }
-    display->setText(display->text() + QString::number(c1.calculer()));
+    display->setText(display->text() + QChar(variable->getName()));
+    waitingForOperand = false;
+
+    qDebug() << "Variable entrée dans l'affichage:" << QChar(variable->getName());
 }
-//! [7]
 
-//! [8]
-void Calculator::unaryOperatorClicked()
-//! [8] //! [9]
-{
-    /*Button *clickedButton = qobject_cast<Button *>(sender());
-    QString clickedOperator = clickedButton->text();
-    double operand = display->text().toDouble();
-    double result = 0.0;
+void Calculator::digitClicked() {
+    Button *clickedButton = qobject_cast<Button *>(sender());
+    QString clickedText = clickedButton->text();
 
-    if (clickedOperator == tr("Sqrt")) {
-        if (operand < 0.0) {
-            abortOperation();
+    if (clickedText.at(0).isDigit()) {
+        int digitValue = clickedText.toInt();
+        Constante c1(digitValue);
+        if (display->text() == "0" && c1.calculer() == 0.0)
             return;
+
+        if (waitingForOperand) {
+            display->clear();
+            waitingForOperand = false;
         }
-        result = std::sqrt(operand);
-    } else if (clickedOperator == tr("x\302\262")) {
-        result = std::pow(operand, 2.0);
-    } else if (clickedOperator == tr("1/x")) {
-        if (operand == 0.0) {
-            abortOperation();
-            return;
-        }
-        result = 1.0 / operand;
+        display->setText(display->text() + QString::number(c1.calculer()));
+    } else {
+        //handleVariableInput(clickedText.at(0));
     }
-    display->setText(QString::number(result));
-    waitingForOperand = true;*/
 }
-//! [9]
 
-//! [10]
-void Calculator::additiveOperatorClicked()
-//! [10] //! [11]
+void Calculator::binaryOperatorClicked()
 {
     Button *clickedButton = qobject_cast<Button *>(sender());
     if (!clickedButton)
-      return;
+        return;
     QString clickedOperator = clickedButton->text();
     double operand = display->text().toDouble();
-
-
-//! [11] //! [12]
-    if (!pendingMultiplicativeOperator.isEmpty()) {
-//! [12] //! [13]
-        if (!calculate(operand, pendingMultiplicativeOperator)) {
+    if (!pendingPowerOperator.isEmpty()) {
+        if (!calculate(operand, pendingPowerOperator)) {
             abortOperation();
             return;
         }
-        display->setText(QString::number(factorSoFar));
-        operand = factorSoFar;
-        factorSoFar = 0.0;
-        pendingMultiplicativeOperator.clear();
-    }
-
-//! [13] //! [14]
-    if (!pendingAdditiveOperator.isEmpty()) {
-//! [14] //! [15]
-        if (!calculate(operand, pendingAdditiveOperator)) {
-            abortOperation();
-            return;
-        }
-        display->setText(QString::number(sumSoFar));
+        display->setText(QString::number(powerSoFar));
     } else {
-        sumSoFar = operand;
+        powerSoFar = operand;
     }
-
-//! [15] //! [16]
-    pendingAdditiveOperator = clickedOperator;
-//! [16] //! [17]
+    pendingPowerOperator = clickedOperator;
     waitingForOperand = true;
 }
-//! [17]
 
-//! [18]
+void Calculator::unaryOperatorClicked() {
+    Button *clickedButton = qobject_cast<Button *>(sender());
+    if (!clickedButton)
+        return;
+
+    QString clickedOperator = clickedButton->text();
+    QString displayText = display->text();
+    double operand = displayText.toDouble();
+    QString result;
+
+    QRegularExpression regex("[a-zA-Z]");
+
+    if (clickedOperator == tr("|x|")) {
+        if (displayText.contains(regex)) {
+            result = "|" + displayText + "|";
+        } else {
+            Constante c1(operand);
+            Absolue a1(&c1);
+            result = QString::number(a1.calculer());
+        }
+    } else if (clickedOperator == tr("x²")) {
+        if (displayText.contains(regex)) {
+            result = "(" + displayText + ")²";
+        } else {
+            Constante c1(operand);
+            Carre ca1(&c1);
+            result = QString::number(ca1.calculer());
+        }
+    } else if (clickedOperator == tr("ln(x)")) {
+        if (displayText.contains(regex)) {
+            result = "ln(" + displayText + ")";
+        } else {
+            Constante c1(operand);
+            Ln ln1(&c1);
+            result = QString::number(ln1.calculer());
+        }
+    } else if (clickedOperator == tr("1/x")) {
+        if (displayText.contains(regex)) {
+            result = "1/(" + displayText + ")";
+        } else {
+            Constante c1(operand);
+            Inverse in1(&c1);
+            result = QString::number(in1.calculer());
+        }
+    } else if (clickedOperator == tr("Sqrt")) {
+        if (displayText.contains(regex)) {
+            result = "sqrt(" + displayText + ")";
+        } else {
+            Constante c1(operand);
+            Racine ra1(&c1);
+            result = QString::number(ra1.calculer());
+        }
+    } else if (clickedOperator == tr("±x")) {
+        if (displayText.contains(regex)) {
+            result = "-(" + displayText + ")";
+        } else {
+            Constante c1(operand);
+            Oppose op1(&c1);
+            result = QString::number(op1.calculer());
+        }
+    }
+
+    display->setText(result);
+    waitingForOperand = true;
+}
+
 void Calculator::multiplicativeOperatorClicked()
 {
     Button *clickedButton = qobject_cast<Button *>(sender());
     if (!clickedButton)
-      return;
+        return;
     QString clickedOperator = clickedButton->text();
     double operand = display->text().toDouble();
 
@@ -211,12 +267,86 @@ void Calculator::multiplicativeOperatorClicked()
     pendingMultiplicativeOperator = clickedOperator;
     waitingForOperand = true;
 }
-//! [18]
 
-//! [20]
+void Calculator::additiveOperatorClicked()
+{
+    Button *clickedButton = qobject_cast<Button *>(sender());
+    if (!clickedButton)
+        return;
+    QString clickedOperator = clickedButton->text();
+    double operand = display->text().toDouble();
+
+    if (!pendingMultiplicativeOperator.isEmpty()) {
+        if (!calculate(operand, pendingMultiplicativeOperator)) {
+            abortOperation();
+            return;
+        }
+        display->setText(QString::number(factorSoFar));
+        operand = factorSoFar;
+        factorSoFar = 0.0;
+        pendingMultiplicativeOperator.clear();
+    }
+
+    if (!pendingAdditiveOperator.isEmpty()) {
+        if (!calculate(operand, pendingAdditiveOperator)) {
+            abortOperation();
+            return;
+        }
+        display->setText(QString::number(sumSoFar));
+    } else {
+        sumSoFar = operand;
+    }
+
+    pendingAdditiveOperator = clickedOperator;
+    waitingForOperand = true;
+}
+
+bool Calculator::calculate(float rightOperand, const QString &pendingOperator)
+{
+    if (pendingOperator == tr("+")) {
+        Constante c3(sumSoFar);
+        Constante c4(rightOperand);
+        Addition a1(&c3, &c4);
+        sumSoFar = a1.calculer();
+    } else if (pendingOperator == tr("-")) {
+        Constante c3(sumSoFar);
+        Constante c4(rightOperand);
+        Soustraction s1(&c3, &c4);
+        sumSoFar = s1.calculer();
+    } else if (pendingOperator == tr("\303\227")) {
+        Constante c3(factorSoFar);
+        Constante c4(rightOperand);
+        Multiplication m1(&c3, &c4);
+        factorSoFar = m1.calculer();
+    } else if (pendingOperator == tr("\303\267")) {
+        if (rightOperand == 0.0)
+            return false;
+        Constante c3(factorSoFar);
+        Constante c4(rightOperand);
+        Division d1(&c4, &c3);
+        factorSoFar = d1.calculer();
+    }
+    else if (pendingOperator == tr("x\302\272y")){
+        Constante c3(powerSoFar);
+        Constante c4(rightOperand);
+        Puissance p1(&c3, &c4);
+        powerSoFar = p1.calculer();
+    }
+    return true;
+}
+
 void Calculator::equalClicked()
 {
     double operand = display->text().toDouble();
+    if (!pendingPowerOperator.isEmpty()) {
+        if (!calculate(operand, pendingPowerOperator)) {
+            abortOperation();
+            return;
+        }
+        operand = powerSoFar;
+        powerSoFar = 0.0;
+        pendingPowerOperator.clear();
+    }
 
     if (!pendingMultiplicativeOperator.isEmpty()) {
         if (!calculate(operand, pendingMultiplicativeOperator)) {
@@ -241,9 +371,7 @@ void Calculator::equalClicked()
     sumSoFar = 0.0;
     waitingForOperand = true;
 }
-//! [20]
 
-//! [22]
 void Calculator::pointClicked()
 {
     if (waitingForOperand)
@@ -252,24 +380,7 @@ void Calculator::pointClicked()
         display->setText(display->text() + tr("."));
     waitingForOperand = false;
 }
-//! [22]
 
-//! [24]
-void Calculator::changeSignClicked()
-{
-    QString text = display->text();
-    double value = text.toDouble();
-
-    if (value > 0.0) {
-        text.prepend(tr("-"));
-    } else if (value < 0.0) {
-        text.remove(0, 1);
-    }
-    display->setText(text);
-}
-//! [24]
-
-//! [26]
 void Calculator::backspaceClicked()
 {
     if (waitingForOperand)
@@ -283,9 +394,7 @@ void Calculator::backspaceClicked()
     }
     display->setText(text);
 }
-//! [26]
 
-//! [28]
 void Calculator::clear()
 {
     if (waitingForOperand)
@@ -294,45 +403,19 @@ void Calculator::clear()
     display->setText("0");
     waitingForOperand = true;
 }
-//! [28]
 
-//! [30]
 void Calculator::clearAll()
 {
     sumSoFar = 0.0;
     factorSoFar = 0.0;
+    powerSoFar = 0.0;
     pendingAdditiveOperator.clear();
     pendingMultiplicativeOperator.clear();
+    pendingPowerOperator.clear();
     display->setText("0");
     waitingForOperand = true;
 }
-//! [30]
 
-//! [32]
-void Calculator::clearMemory()
-{
-    sumInMemory = 0.0;
-}
-
-void Calculator::readMemory()
-{
-    display->setText(QString::number(sumInMemory));
-    waitingForOperand = true;
-}
-
-void Calculator::setMemory()
-{
-    equalClicked();
-    sumInMemory = display->text().toDouble();
-}
-
-void Calculator::addToMemory()
-{
-    equalClicked();
-    sumInMemory += display->text().toDouble();
-}
-//! [32]
-//! [34]
 template<typename PointerToMemberFunction>
 Button *Calculator::createButton(const QString &text, const PointerToMemberFunction &member)
 {
@@ -340,47 +423,29 @@ Button *Calculator::createButton(const QString &text, const PointerToMemberFunct
     connect(button, &Button::clicked, this, member);
     return button;
 }
-//! [34]
 
-//! [36]
 void Calculator::abortOperation()
 {
     clearAll();
     display->setText(tr("####"));
 }
-//! [36]
 
-//! [38]
-bool Calculator::calculate(float rightOperand, const QString &pendingOperator)
-{
-    if (pendingOperator == tr("+")) {
-        Constante c3(sumSoFar);
-        Constante c4(rightOperand);
-        Addition a1(&c3, &c4);
-        sumSoFar = a1.calculer();
-        //sumSoFar += rightOperand;
-    } else if (pendingOperator == tr("-")) {
-        Constante c3(sumSoFar);
-        Constante c4(rightOperand);
-        Soustraction s1(&c3, &c4);
-        sumSoFar = s1.calculer();
-        //sumSoFar -= rightOperand;
-    } else if (pendingOperator == tr("\303\227")) {
-        Constante c3(factorSoFar);
-        Constante c4(rightOperand);
-        Multiplication m1(&c3, &c4);
-        factorSoFar = m1.calculer();
-        //factorSoFar *= rightOperand;
-    } else if (pendingOperator == tr("\303\267")) {
-        if (rightOperand == 0.0)
-            return false;
-        Constante c3(factorSoFar);
-        Constante c4(rightOperand);
-        Division d1(&c4, &c3);
-        factorSoFar = d1.calculer();
-        //factorSoFar /= rightOperand;
-    }
-    return true;
+QGridLayout *Calculator::getLayout() {
+    return mainLayout;
 }
-//! [38]
 
+void Calculator::editDisplay(float expression) {
+    std::cout << "Inside editDisplay with float const as parameter" << std::endl;
+    char buffer[64];
+    int ret = snprintf(buffer, sizeof buffer, "%f", expression);
+    std::cout << ret << std::endl;
+    std::cout << sizeof(buffer) << std::endl;
+    if(ret == sizeof(buffer)) {
+        display->setText(tr(buffer));
+    }
+}
+
+void Calculator::editDisplay(std::string expression) {
+    std::cout << "Inside editDisplay with string const as parameter" << std::endl;
+    display->setText(expression.c_str());
+}

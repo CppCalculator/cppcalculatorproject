@@ -2,41 +2,29 @@
 
 
 FenetrePrincipale::FenetrePrincipale() {
-    QWidget *widget = new QWidget;
+    widget = new QWidget;
     setCentralWidget(widget);
 
-    QWidget *topFiller = new QWidget;
+    layout = new QVBoxLayout(widget);
+
+    topFiller = new QWidget;
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    infoLabel = new QLabel(tr("<i>Choisissez un menu, ou faites un clic-droit"));
-    infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
-    infoLabel->setAlignment(Qt::AlignCenter);
-
-    QWidget *bottomFiller = new QWidget;
-    bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->setContentsMargins(5,5,5,5);
-    layout->addWidget(topFiller);
-    layout->addWidget(infoLabel);
-    layout->addWidget(bottomFiller);
-    widget->setLayout(layout);
+    layout->setMenuBar(topFiller);
 
     createActions();
     createMenus();
 
-    QString message = tr("Faites un clic-droit pour voir les options disponibles");
-    statusBar()->showMessage(message);
-
-    setWindowTitle(tr("Expression - Menus"));
+    setWindowTitle(tr("Expression"));
     setMinimumSize(160, 160);
-    resize(480, 320);
+    resize(320, 480);
 }
 
 void FenetrePrincipale::createActions() {
     chargerFichierAction = new QAction(tr("&Ouvrir"), this);
     chargerFichierAction->setShortcut(QKeySequence::Open);
     chargerFichierAction->setStatusTip(tr("&Charger un fichier"));
+    connect(chargerFichierAction, &QAction::triggered, this, &FenetrePrincipale::chargerFichier);
 
     enregistrerFichierAction = new QAction(tr("&Enregistrer"), this);
     enregistrerFichierAction->setShortcut(QKeySequence::Save);
@@ -44,24 +32,31 @@ void FenetrePrincipale::createActions() {
 
     saisirExpressionAction = new QAction(tr("&Saisir une expression"), this);
     saisirExpressionAction->setStatusTip(tr("&Saisir une expression"));
+    connect(saisirExpressionAction, &QAction::triggered, this, &FenetrePrincipale::saisirExpression);
 
     affichageClassiqueAction = new QAction(tr("&Afficher l'expression"));
     affichageClassiqueAction->setStatusTip(tr("&Afficher l'expression"));
+    connect(affichageClassiqueAction, &QAction::triggered, this, &FenetrePrincipale::afficherClassique);
 
     affichageNPIAction = new QAction(tr("&Afficher l'expresion en NPI"));
     affichageNPIAction->setStatusTip(tr("&Afficher de l'expression en notation Polonaise inversée"));
+    connect(affichageNPIAction, &QAction::triggered, this, &FenetrePrincipale::afficherNPI);
 
     affichageValeurExpressionAction = new QAction(tr("&Afficher la valeur de l'expression"));
     affichageValeurExpressionAction->setStatusTip(tr("&Afficher la valeur de l'expression"));
+    connect(affichageValeurExpressionAction, &QAction::triggered, this, &FenetrePrincipale::afficherValeurExpression);
 
     affichageGraphique2DAction = new QAction(tr("&Afficher le graphique 2D"));
     affichageGraphique2DAction->setStatusTip(tr("&Afficher le graphique 2D de l'expression"));
+    connect(affichageGraphique2DAction, &QAction::triggered, this, &FenetrePrincipale::affichageGraphique2D);
 
     affichageGraphique3DAction = new QAction(tr("&Affichager le graphique 3D"));
     affichageGraphique3DAction->setStatusTip(tr("&Afficher le graphique 3D de l'expression"));
+    connect(affichageGraphique3DAction, &QAction::triggered, this, &FenetrePrincipale::affichageGraphique3D);
 
     simplificationExpressionAction = new QAction(tr("&Simplier l'expression"));
     simplificationExpressionAction->setStatusTip(tr("&Simplifier l'expression"));
+    connect(simplificationExpressionAction, &QAction::triggered, this, &FenetrePrincipale::simplifierExpression);
 }
 
 void FenetrePrincipale::createMenus() {
@@ -79,4 +74,126 @@ void FenetrePrincipale::createMenus() {
 
     outilsMenu = menuBar()->addMenu("&Outils");
     outilsMenu->addAction(simplificationExpressionAction);
+}
+
+void FenetrePrincipale::removeWidgetsFromLayout() {
+    QLayoutItem* item;
+    while ((item = layout->takeAt(0)) != nullptr) {
+        if (item->widget()) {
+            item->widget()->deleteLater();
+        }
+        delete item;
+    }
+}
+
+void FenetrePrincipale::resizeWindow() {
+    QSize size(0, menuBar()->height());
+    for (int i = 0; i < layout->count(); ++i) {
+        QLayoutItem* item = layout->itemAt(i);
+        if (item && item->widget()) {
+            size.setWidth(std::max(size.width(), item->widget()->width()));
+            size.setHeight(size.height() + item->widget()->height());
+        }
+    }
+    resize(size);
+}
+
+void FenetrePrincipale::saisirExpression() {
+    removeWidgetsFromLayout();
+    if(calculatorView == nullptr) {
+        calculatorView = new Calculator(widget);
+    }
+    layout->addWidget(calculatorView);
+    resizeWindow();
+    layout->update();
+}
+
+void FenetrePrincipale::afficherClassique() {
+    removeWidgetsFromLayout();
+    if(calculatorView == nullptr) {
+        calculatorView = new Calculator(widget);
+    }
+    layout->addWidget(calculatorView);
+    resizeWindow();
+    layout->update();
+
+    Data &data = Data::getInstance();
+    std::stringstream dataStringStream;
+    data.getExpression()->afficherNC(dataStringStream);
+    std::string dataFromStringStream;
+    dataStringStream >> dataFromStringStream;
+    std::cout << dataFromStringStream << std::endl;
+    calculatorView->editDisplay(dataFromStringStream);
+}
+
+void FenetrePrincipale::afficherNPI() {
+    removeWidgetsFromLayout();
+    if(calculatorView == nullptr) {
+        calculatorView = new Calculator(widget);
+    }
+    layout->addWidget(calculatorView);
+    resizeWindow();
+    layout->update();
+
+    Data &data = Data::getInstance();
+    std::stringstream dataStringStream;
+    data.getExpression()->afficherNPI(dataStringStream);
+    std::string dataFromStringStream;
+    dataStringStream >> dataFromStringStream;
+    calculatorView->editDisplay(dataFromStringStream);
+}
+
+void FenetrePrincipale::afficherValeurExpression() {
+    removeWidgetsFromLayout();
+    if(calculatorView == nullptr) {
+        calculatorView = new Calculator(widget);
+    }
+    layout->addWidget(calculatorView);
+    resizeWindow();
+    layout->update();
+
+    Data &data = Data::getInstance();
+    calculatorView->editDisplay(data.getExpression()->calculer());
+}
+
+void FenetrePrincipale::simplifierExpression() {
+    removeWidgetsFromLayout();
+    if(calculatorView == nullptr) {
+        calculatorView = new Calculator(widget);
+    }
+    layout->addWidget(calculatorView);
+    resizeWindow();
+    layout->update();
+
+    Data &data = Data::getInstance();
+    data.updateExpression(data.getExpression()->simplifier());
+}
+
+
+void FenetrePrincipale::affichageGraphique3D() {
+    removeWidgetsFromLayout();
+    if(graph3D == nullptr) {
+        graph3D = new Graph3DView(widget);
+    }
+    layout->addWidget(graph3D);
+    resizeWindow();
+    layout->update();
+}
+
+void FenetrePrincipale::chargerFichier() {
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir Fichier"), "", tr("Text Files (*.txt);;All Files (*)"));
+    if (!fileName.isEmpty()) {
+        // Afficher le chemin absolu du fichier sélectionné
+        QMessageBox::information(this, tr("Chemin du fichier"), fileName);
+    }
+}
+void FenetrePrincipale::affichageGraphique2D(){
+    removeWidgetsFromLayout();
+    if(g == nullptr) {
+        g = new Graph2dView(widget);
+    }
+    layout->addWidget(g);
+    g->resize(800, 600);
+    resizeWindow();
+    layout->update();
 }

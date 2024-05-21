@@ -1,6 +1,7 @@
 #include "graph3dview.h"
 
-Graph3DView::Graph3DView(QWidget *parent): QWidget{parent} {
+Graph3DView::Graph3DView(QWidget *parent, int minW, int minH): QWidget{parent} {
+    Data::getInstance().subscribe(this);
     this->_controller = new Graph3DController();
 
     // Widget and layouts
@@ -12,7 +13,7 @@ Graph3DView::Graph3DView(QWidget *parent): QWidget{parent} {
 
     // Setup the surface
     _surface = new Q3DSurface();
-    this->_surface->setMinimumSize(QSize(512, 512));
+    this->_surface->setMinimumSize(QSize(minW, minH));
     this->_surface->setResizeMode(QQuickWidget::SizeRootObjectToView);
     this->_surface->activeTheme()->setType(Q3DTheme::ThemePrimaryColors);
     this->_surface->activeTheme()->setLabelsEnabled(true);
@@ -63,10 +64,22 @@ Graph3DView::Graph3DView(QWidget *parent): QWidget{parent} {
     this->setWindowTitle("Graph 3D");
 }
 
+Graph3DView::~Graph3DView() {
+    Data::getInstance().unsubscribe(this);
+    delete this->_controller;
+}
 
+/**
+ * @brief Set the expression to display on the graph
+ * @param expression - The expression to display
+ */
 void Graph3DView::setExpression(Expression *expression) const {
     this->_controller->setExpression(expression);
     this->setupAxisRanges();
+}
+
+void Graph3DView::update() {
+    this->setExpression(Data::getInstance().getExpression());
 }
 
 /**

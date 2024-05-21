@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef FENETREPRINCIPAL_H
+#define FENETREPRINCIPAL_H
 
 #include <QContextMenuEvent>
 #include <QLabel>
@@ -10,6 +10,13 @@
 #include <QStatusBar>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <iostream>
+#include <sstream>
+#include "../../view/calculator.h"
+#include "../expression/Expression.h"
+#include "../utils/data.h"
+#include "../../view/graph3dview.h"
+#include "../../view/graph2dview.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -26,20 +33,26 @@ public:
 
 private slots:
     /**
-    void chargerFichier();
     void enregistrerFichier();
+    */
+    void chargerFichier();
     void saisirExpression();
-    void affichageClassique();
-    void affichageNPI();
+    void afficherClassique();
+    void afficherNPI();
     void afficherValeurExpression();
     void affichageGraphique2D();
     void affichageGraphique3D();
-    void simplificationExpression();
-*/
+    void simplifierExpression();
 
 private:
     void createActions();
     void createMenus();
+    void removeWidgetsFromLayout();
+    void resizeWindow();
+
+    QWidget *widget;
+    QWidget *topFiller;
+
     QMenu *fichierMenu;
     QMenu *editionMenu;
     QMenu *outilsMenu;
@@ -53,6 +66,10 @@ private:
     QAction *affichageGraphique3DAction;
     QAction *simplificationExpressionAction;
     QLabel *infoLabel;
+    QVBoxLayout *layout = new QVBoxLayout;
+    Calculator *calculatorView = nullptr;
+    Graph3DView *graph3D = nullptr;
+    Graph2dView *g = nullptr;
 };
 
 #endif // MAINWINDOW_H

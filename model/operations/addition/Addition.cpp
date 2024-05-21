@@ -20,6 +20,14 @@ void Addition::afficherNC() {
     std::cout << ")\n";
 }
 
+void Addition::afficherNC(std::ostream& os) const {
+    os << "(";
+    get_eg()->afficherNC(os);
+    os << " +";
+    get_ed()->afficherNC(os);
+    os << ")\n";
+}
+
 void Addition::afficherNPI() {
     get_eg()->afficherNPI();
     std::cout << " ";
@@ -27,16 +35,15 @@ void Addition::afficherNPI() {
     std::cout << " + ";
 }
 
+float Addition::calculer() {
+    return get_eg()->calculer() + get_ed()->calculer();
+}
 
 void Addition::afficherNPI(std::ostream& os) const {
     get_eg()->afficherNPI(os);
     os << " ";
     get_ed()->afficherNPI(os);
     os << " +";
-}
-
-float Addition::calculer() {
-    return get_eg()->calculer() + get_ed()->calculer();
 }
 
 Expression *Addition::simplifier() {
