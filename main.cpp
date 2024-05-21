@@ -27,8 +27,8 @@ int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
-    //FenetrePrincipale w;
-    //w.show();
+    FenetrePrincipale w;
+    w.show();
 
     Constante c1(8);
     auto v1 = Variable::construct('x',0);

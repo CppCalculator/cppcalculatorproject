@@ -13,7 +13,14 @@ using namespace std;
 #include <ostream>
 #include <string>
 
+void Racine::afficherNC(std::ostream& os) const {
+    os << "sqrt";
+    get_e()->afficherNC(os);
+}
+
 void Racine::afficherNPI(std::ostream& os) const {
+    os << "sqrt";
+    get_e()->afficherNPI(os);
 }
 
 Expression *Racine::simplifier() {

@@ -42,9 +42,7 @@ Calculator::Calculator(QWidget *parent)
     display->setFont(font);
 
     mainLayout = new QGridLayout(this);
-    mainLayout->addWidget(display, 0, 0, 1, 6);
 
-//! [4]
     for (int i = 0; i < NumDigitButtons; ++i)
         digitButtons[i] = createButton(QString::number(i), &Calculator::digitClicked);
 
@@ -70,8 +68,6 @@ Calculator::Calculator(QWidget *parent)
     Button *variableButtonx = createButton(tr("X"), &Calculator::variableClicked);
     Button *variableButtony = createButton(tr("Y"), &Calculator::variableClicked);
 
-
-    QGridLayout *mainLayout = new QGridLayout;
     mainLayout->setSizeConstraint(QLayout::SetFixedSize);
     mainLayout->addWidget(display, 0, 0, 1, 6);
     mainLayout->addWidget(backspaceButton, 1, 0, 1, 2);
@@ -103,13 +99,7 @@ Calculator::Calculator(QWidget *parent)
     mainLayout->addWidget(negateButton, 5, 5);
     mainLayout->addWidget(variableButtonx, 1, 5);
     mainLayout->addWidget(variableButtony, 1, 6);
-
-    setLayout(mainLayout);
-
-    setWindowTitle(tr("Calculator"));
 }
-
-
 
 void Calculator::variableClicked() {
     bool ok;
@@ -169,8 +159,6 @@ void Calculator::digitClicked() {
         //handleVariableInput(clickedText.at(0));
     }
 }
-
-
 
 void Calculator::binaryOperatorClicked()
 {
@@ -258,8 +246,6 @@ void Calculator::unaryOperatorClicked() {
     waitingForOperand = true;
 }
 
-
-
 void Calculator::multiplicativeOperatorClicked()
 {
     Button *clickedButton = qobject_cast<Button *>(sender());
@@ -281,8 +267,6 @@ void Calculator::multiplicativeOperatorClicked()
     pendingMultiplicativeOperator = clickedOperator;
     waitingForOperand = true;
 }
-
-
 
 void Calculator::additiveOperatorClicked()
 {
@@ -317,8 +301,6 @@ void Calculator::additiveOperatorClicked()
     waitingForOperand = true;
 }
 
-
-
 bool Calculator::calculate(float rightOperand, const QString &pendingOperator)
 {
     if (pendingOperator == tr("+")) {
@@ -352,8 +334,6 @@ bool Calculator::calculate(float rightOperand, const QString &pendingOperator)
     }
     return true;
 }
-
-
 
 void Calculator::equalClicked()
 {
@@ -392,8 +372,6 @@ void Calculator::equalClicked()
     waitingForOperand = true;
 }
 
-
-
 void Calculator::pointClicked()
 {
     if (waitingForOperand)
@@ -402,8 +380,6 @@ void Calculator::pointClicked()
         display->setText(display->text() + tr("."));
     waitingForOperand = false;
 }
-
-
 
 void Calculator::backspaceClicked()
 {
@@ -419,8 +395,6 @@ void Calculator::backspaceClicked()
     display->setText(text);
 }
 
-
-
 void Calculator::clear()
 {
     if (waitingForOperand)
@@ -429,8 +403,6 @@ void Calculator::clear()
     display->setText("0");
     waitingForOperand = true;
 }
-
-
 
 void Calculator::clearAll()
 {
@@ -444,8 +416,6 @@ void Calculator::clearAll()
     waitingForOperand = true;
 }
 
-
-
 template<typename PointerToMemberFunction>
 Button *Calculator::createButton(const QString &text, const PointerToMemberFunction &member)
 {
@@ -454,16 +424,11 @@ Button *Calculator::createButton(const QString &text, const PointerToMemberFunct
     return button;
 }
 
-
-
 void Calculator::abortOperation()
 {
     clearAll();
     display->setText(tr("####"));
 }
-
-
-
 
 QGridLayout *Calculator::getLayout() {
     return mainLayout;

@@ -11,7 +11,15 @@
 #include <ostream>
 #include <string>
 
+void Ln::afficherNC(std::ostream& os) const {
+    os << "ln(";
+    get_e()->afficherNC(os);
+    os << ") ";
+}
+
 void Ln::afficherNPI(std::ostream& os) const {
+    get_e()->afficherNPI(os);
+    os << " LN ";
 }
 
 Expression *Ln::simplifier() {
@@ -23,7 +31,7 @@ using namespace std;
 
 void Ln::afficherNC() {
     cout << "ln(";
-    get_e()->afficherNPI();
+    get_e()->afficherNC();
     cout << ") ";
 }
 

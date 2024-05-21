@@ -16,10 +16,14 @@ public:
     ~Puissance() override = default;
 
     void afficherNC() override;
+
     void afficherNPI() override;
+
     float calculer() override;
 
     Expression* simplifier() override;
+
+    void afficherNC(std::ostream& flux) const override;
 
     void afficherNPI(std::ostream& flux) const override;
 

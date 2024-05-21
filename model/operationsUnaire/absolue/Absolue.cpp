@@ -9,8 +9,17 @@ using namespace std;
 #include <ostream>
 #include <string>
 
-void Absolue::afficherNPI(std::ostream& os) const {
+void Absolue::afficherNC(std::ostream& os) const {
+    os << "|";
+    get_e()->afficherNC(os);
+    os << "| ";
 }
+
+void Absolue::afficherNPI(std::ostream& os) const {
+    get_e()->afficherNPI(os);
+    os << " ABS ";
+}
+
 
 Expression *Absolue::simplifier() {
 }
@@ -21,7 +30,7 @@ void Absolue::sauvegardeASCII(const std::string& n_fichier) {
 
 void Absolue::afficherNC() {
     cout << "|";
-    get_e()->afficherNPI();
+    get_e()->afficherNC();
     cout << "| ";
 }
 

@@ -47,8 +47,11 @@ private slots:
 private:
     void createActions();
     void createMenus();
+    void removeWidgetsFromLayout();
+    void resizeWindow();
 
     QWidget *widget;
+    QWidget *topFiller;
 
     QMenu *fichierMenu;
     QMenu *editionMenu;
@@ -64,7 +67,9 @@ private:
     QAction *simplificationExpressionAction;
     QLabel *infoLabel;
     QVBoxLayout *layout = new QVBoxLayout;
-    Calculator *calculatorView = NULL;
+    Calculator *calculatorView = nullptr;
+    Graph3DView *graph3D = nullptr;
+    Graph2dView *g = nullptr;
 };
 
 #endif // MAINWINDOW_H

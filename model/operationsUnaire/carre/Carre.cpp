@@ -12,7 +12,14 @@ using namespace std;
 #include <ostream>
 #include <string>
 
+void Carre::afficherNC(std::ostream& os) const {
+    get_e()->afficherNC(os);
+    os << "^2" ;
+}
+
 void Carre::afficherNPI(std::ostream& os) const {
+    get_e()->afficherNPI(os);
+    os << "^2" ;
 }
 
 Expression *Carre::simplifier() {
@@ -28,7 +35,7 @@ void Carre::afficherNC(){
 }
 
 void Carre::afficherNPI(){
-    get_e()->afficherNC();
+    get_e()->afficherNPI();
     cout << "^2" ;
 }
 

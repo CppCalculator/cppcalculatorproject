@@ -2,28 +2,22 @@
 
 
 FenetrePrincipale::FenetrePrincipale() {
-    widget = new QWidget();
+    widget = new QWidget;
     setCentralWidget(widget);
 
     layout = new QVBoxLayout(widget);
 
-    QWidget *topFiller = new QWidget;
+    topFiller = new QWidget;
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QWidget *bottomFiller = new QWidget;
-    bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-
-    layout->setContentsMargins(5,5,5,5);
-    layout->addWidget(topFiller);
-    layout->addWidget(bottomFiller);
-
+    layout->setMenuBar(topFiller);
 
     createActions();
     createMenus();
 
-    setWindowTitle(tr("Expression - Menus"));
+    setWindowTitle(tr("Expression"));
     setMinimumSize(160, 160);
-    resize(480, 320);
+    resize(320, 480);
 }
 
 void FenetrePrincipale::createActions() {
@@ -46,9 +40,11 @@ void FenetrePrincipale::createActions() {
 
     affichageNPIAction = new QAction(tr("&Afficher l'expresion en NPI"));
     affichageNPIAction->setStatusTip(tr("&Afficher de l'expression en notation Polonaise inversée"));
+    connect(affichageNPIAction, &QAction::triggered, this, &FenetrePrincipale::afficherNPI);
 
     affichageValeurExpressionAction = new QAction(tr("&Afficher la valeur de l'expression"));
     affichageValeurExpressionAction->setStatusTip(tr("&Afficher la valeur de l'expression"));
+    connect(affichageValeurExpressionAction, &QAction::triggered, this, &FenetrePrincipale::afficherValeurExpression);
 
     affichageGraphique2DAction = new QAction(tr("&Afficher le graphique 2D"));
     affichageGraphique2DAction->setStatusTip(tr("&Afficher le graphique 2D de l'expression"));
@@ -60,6 +56,7 @@ void FenetrePrincipale::createActions() {
 
     simplificationExpressionAction = new QAction(tr("&Simplier l'expression"));
     simplificationExpressionAction->setStatusTip(tr("&Simplifier l'expression"));
+    connect(simplificationExpressionAction, &QAction::triggered, this, &FenetrePrincipale::simplifierExpression);
 }
 
 void FenetrePrincipale::createMenus() {
@@ -79,18 +76,47 @@ void FenetrePrincipale::createMenus() {
     outilsMenu->addAction(simplificationExpressionAction);
 }
 
-void FenetrePrincipale::saisirExpression() {
-    if(calculatorView == NULL) {
-        calculatorView = new Calculator(widget);
-        layout->addWidget(calculatorView);
+void FenetrePrincipale::removeWidgetsFromLayout() {
+    QLayoutItem* item;
+    while ((item = layout->takeAt(0)) != nullptr) {
+        if (item->widget()) {
+            item->widget()->deleteLater();
+        }
+        delete item;
     }
 }
 
-void FenetrePrincipale::afficherClassique() {
-    if(calculatorView == NULL) {
-        calculatorView = new Calculator(widget);
-        layout->addWidget(calculatorView);
+void FenetrePrincipale::resizeWindow() {
+    QSize size(0, menuBar()->height());
+    for (int i = 0; i < layout->count(); ++i) {
+        QLayoutItem* item = layout->itemAt(i);
+        if (item && item->widget()) {
+            size.setWidth(std::max(size.width(), item->widget()->width()));
+            size.setHeight(size.height() + item->widget()->height());
+        }
     }
+    resize(size);
+}
+
+void FenetrePrincipale::saisirExpression() {
+    removeWidgetsFromLayout();
+    if(calculatorView == nullptr) {
+        calculatorView = new Calculator(widget);
+    }
+    layout->addWidget(calculatorView);
+    resizeWindow();
+    layout->update();
+}
+
+void FenetrePrincipale::afficherClassique() {
+    removeWidgetsFromLayout();
+    if(calculatorView == nullptr) {
+        calculatorView = new Calculator(widget);
+    }
+    layout->addWidget(calculatorView);
+    resizeWindow();
+    layout->update();
+
     Data &data = Data::getInstance();
     std::stringstream dataStringStream;
     data.getExpression()->afficherNC(dataStringStream);
@@ -101,10 +127,14 @@ void FenetrePrincipale::afficherClassique() {
 }
 
 void FenetrePrincipale::afficherNPI() {
-    if(calculatorView == NULL) {
+    removeWidgetsFromLayout();
+    if(calculatorView == nullptr) {
         calculatorView = new Calculator(widget);
-        layout->addWidget(calculatorView);
     }
+    layout->addWidget(calculatorView);
+    resizeWindow();
+    layout->update();
+
     Data &data = Data::getInstance();
     std::stringstream dataStringStream;
     data.getExpression()->afficherNPI(dataStringStream);
@@ -114,27 +144,40 @@ void FenetrePrincipale::afficherNPI() {
 }
 
 void FenetrePrincipale::afficherValeurExpression() {
-    if(calculatorView == NULL) {
+    removeWidgetsFromLayout();
+    if(calculatorView == nullptr) {
         calculatorView = new Calculator(widget);
-        layout->addWidget(calculatorView);
     }
+    layout->addWidget(calculatorView);
+    resizeWindow();
+    layout->update();
+
     Data &data = Data::getInstance();
     calculatorView->editDisplay(data.getExpression()->calculer());
 }
 
 void FenetrePrincipale::simplifierExpression() {
-    if(calculatorView == NULL) {
+    removeWidgetsFromLayout();
+    if(calculatorView == nullptr) {
         calculatorView = new Calculator(widget);
-        layout->addWidget(calculatorView);
     }
+    layout->addWidget(calculatorView);
+    resizeWindow();
+    layout->update();
+
     Data &data = Data::getInstance();
     data.updateExpression(data.getExpression()->simplifier());
 }
 
 
 void FenetrePrincipale::affichageGraphique3D() {
-    Graph3DView *graph3D = new Graph3DView(this);
+    removeWidgetsFromLayout();
+    if(graph3D == nullptr) {
+        graph3D = new Graph3DView(widget);
+    }
     layout->addWidget(graph3D);
+    resizeWindow();
+    layout->update();
 }
 
 void FenetrePrincipale::chargerFichier() {
@@ -145,6 +188,12 @@ void FenetrePrincipale::chargerFichier() {
     }
 }
 void FenetrePrincipale::affichageGraphique2D(){
-    Graph2dView *g = new Graph2dView(this);
+    removeWidgetsFromLayout();
+    if(g == nullptr) {
+        g = new Graph2dView(widget);
+    }
     layout->addWidget(g);
+    g->resize(800, 600);
+    resizeWindow();
+    layout->update();
 }

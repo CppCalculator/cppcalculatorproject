@@ -27,6 +27,12 @@ void Puissance::afficherNPI() {
     get_ed()->afficherNC();
 }
 
+void Puissance::afficherNC(std::ostream& flux) const {
+    get_eg()->afficherNC(flux);
+    flux << "^" ;
+    get_ed()->afficherNC(flux);
+}
+
 float Puissance::calculer() {
     return pow(get_eg()->calculer(), get_ed()->calculer());
 }
