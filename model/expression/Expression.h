@@ -19,6 +19,8 @@ public:
 
     virtual float calculer() = 0;
 
+    virtual void afficherNC(std::ostream& flux) const = 0;
+
     virtual void afficherNPI(std::ostream& flux) const = 0;
 
     virtual void sauvegardeASCII(const std::string& n_fichier) = 0;

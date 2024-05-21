@@ -17,6 +17,14 @@ void Multiplication::afficherNC() {
     std::cout << "\n";
 }
 
+void Multiplication::afficherNC(std::ostream& os) const {
+    os << "(";
+    get_eg()->afficherNC(os);
+    os << "*";
+    get_ed()->afficherNC(os);
+    os << " )\n";
+}
+
 void Multiplication::afficherNPI() {
     get_ed()->afficherNPI();
     std::cout << " ";
