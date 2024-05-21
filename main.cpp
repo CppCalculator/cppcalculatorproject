@@ -64,10 +64,8 @@ int main(int argc, char *argv[])
     a1.sauvegardeASCII(n_fichier);
     m1.sauvegardeASCII(n_fichier);
 
-    //gp9 test:
-    Graph3DView view;
-    view.show();
-    view.setExpression(&a1);
+    auto * view = new Graph3DView(nullptr, 512, 512);
+    view->show();
 
     //gp4 test:
     /*
