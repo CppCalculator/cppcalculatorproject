@@ -7,6 +7,20 @@
 #include <iostream>
 
 using namespace std;
+#include "../../constante/Constante.h"
+#include <iostream>
+#include <ostream>
+#include <string>
+
+void Carre::afficherNPI(std::ostream& os) const {
+}
+
+Expression *Carre::simplifier() {
+}
+
+void Carre::sauvegardeASCII(const std::string& n_fichier) {
+}
+
 
 void Carre::afficherNC(){
     get_e()->afficherNC();

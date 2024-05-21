@@ -53,6 +53,10 @@ void Variable::afficherNC(std::ostream &flux) const {
     //TODO implement GP2
 }
 
+const char& Variable::getName() const {
+    return name;
+}
+
 void Variable::afficherNPI(std::ostream &flux) const {
     //TODO implement GP2
 }
@@ -64,4 +68,8 @@ void Variable::sauvegardeASCII(const std::string &n_fichier) {
 Expression *Variable::simplifier() {
     //TODO implement GP7
     return nullptr;
+}
+
+QString Variable::toSymbol() const {
+    return QString(name);
 }

@@ -34,6 +34,9 @@ void Addition::afficherNPI() {
     std::cout << " + ";
 }
 
+float Addition::calculer() {
+    return get_eg()->calculer() + get_ed()->calculer();
+}
 
 void Addition::afficherNPI(std::ostream& os) const {
     get_eg()->afficherNPI(os);
@@ -42,15 +45,10 @@ void Addition::afficherNPI(std::ostream& os) const {
     os << " +";
 }
 
-float Addition::calculer() {
-    return get_eg()->calculer() + get_ed()->calculer();
-}
-
 Expression *Addition::simplifier() {
     const float result = calculer();
     return new Constante(result);
 }
-
 
 void Addition::sauvegardeASCII(const std::string& n_fichier) {
     std::ofstream fichier(n_fichier);
