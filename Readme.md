@@ -1,4 +1,4 @@
-# Nom du Projet
+# CppCalculator
 
 Ce projet est une application de calculatrice graphique 2D/3D développée en C++ avec le framework Qt.
 
