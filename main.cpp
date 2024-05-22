@@ -12,6 +12,7 @@
 #include "model/fenetre/fenetre.h"
 
 #include "model/utils/data.h"
+#include "model/operationsUnaire/carre/Carre.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,6 +22,7 @@ int main(int argc, char *argv[])
 
     Constante c2(0);
     auto v2 = Variable::construct('y',2);
+    auto exp = new Carre(v1);
 
     Puissance p1(&c1,&c2);
 
@@ -41,7 +43,7 @@ int main(int argc, char *argv[])
     std::cout << "\n";
     m2.afficherNPI();
     std::cout << "\n";
-    Addition a1(&m1, &m2);
+    Addition a1(&m1, exp);
     a1.afficherNC();
     std::cout << "\n";
     a1.afficherNPI();
@@ -59,17 +61,18 @@ int main(int argc, char *argv[])
     FenetrePrincipale w;
     w.show();
 
-    //with subscriber :
-    //ExampleSubscriber exampleSubscriber;
-    //data.updateExpression(&a1);
+    bool runConsole = false;
+    for (int i = 0; i < argc; ++i) {
+        if (std::string(argv[i]) == "console") {
+            runConsole = true;
+            break;
+        }
+    }
 
-    int exec = QApplication::exec();
+    if (runConsole) {
+        Console console;
+        console.run();
+    }
 
-    //gp1 test:
-    /*
-    Console console;
-    console.run();
-*/
-
-    return exec;
+    return QApplication::exec();
 }
