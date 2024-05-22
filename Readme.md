@@ -12,7 +12,21 @@ Ce projet est une application de calculatrice graphique 2D/3D développée en C+
 
 Le diagramme de classes suivant illustre la structure de l'application :
 
-![Class-Diagram4.jpg](docs/Class-Diagram4.jpg)
+![Class-Diagram5.jpg](docs/Class-Diagram5.jpg)
+
+## Diagramme de séquence
+
+### Afficher le graphique 3D
+
+![Sequence-Diagram1-3DGraph.jpg](docs/Sequence-Diagram1-3DGraph.jpg)
+
+### Charger une expression depuis un fichier
+
+![Sequence-Diagram2-Classicexp.jpg](docs/Sequence-Diagram2-Classicexp.jpg)
+
+### Saisir une expression par l'interface graphique
+
+![Sequence-Diagram2-Classicexp.jpg](docs/Sequence-Diagram2-Classicexp.jpg)
 
 ## Fonctionnalités
 
