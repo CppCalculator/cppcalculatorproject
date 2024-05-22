@@ -5,9 +5,9 @@
 #include <vector>
 #include "../expression/Expression.h"
 
-class Subscriber {
+class ISubscriber {
 public:
-    virtual ~Subscriber() = default;
+    virtual ~ISubscriber() = default;
     virtual void update() = 0;
 };
 
@@ -15,8 +15,8 @@ class Data {
 public:
     static Data& getInstance();
 
-    void subscribe(Subscriber* subscriber);
-    void unsubscribe(Subscriber* subscriber);
+    void subscribe(ISubscriber* subscriber);
+    void unsubscribe(ISubscriber* subscriber);
     void updateExpression(Expression* newExpression);
     Expression* getExpression() const;
 
@@ -26,7 +26,31 @@ private:
     Data& operator=(const Data&) = delete;
 
     Expression* expression;
-    std::vector<Subscriber*> subscribers;
+    std::vector<ISubscriber*> subscribers;
+};
+
+class Subscriber : public ISubscriber{
+public:
+    Subscriber() {
+        Data::getInstance().subscribe(this);
+    }
+
+    ~Subscriber() override {
+        Data::getInstance().unsubscribe(this);
+        //make log on destruction
+        std::cout << "Subscriber destroyed" << std::endl;
+    }
+
+    virtual void update() = 0;
+
+protected:
+    void subscribe() {
+        Data::getInstance().subscribe(this);
+    }
+
+    void unsubscribe() {
+        Data::getInstance().unsubscribe(this);
+    }
 };
 
 #endif //QTPROJECT_DATA_H

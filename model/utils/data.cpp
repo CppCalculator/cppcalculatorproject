@@ -7,12 +7,12 @@ Data& Data::getInstance() {
 }
 
 // Subscribe a class to be notified when the expression is updated
-void Data::subscribe(Subscriber* subscriber) {
+void Data::subscribe(ISubscriber* subscriber) {
     subscribers.push_back(subscriber);
 }
 
 // Unsubscribe a class
-void Data::unsubscribe(Subscriber* subscriber) {
+void Data::unsubscribe(ISubscriber* subscriber) {
     subscribers.erase(std::remove(subscribers.begin(), subscribers.end(), subscriber), subscribers.end());
 }
 

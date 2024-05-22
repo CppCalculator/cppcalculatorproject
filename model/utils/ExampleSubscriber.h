@@ -6,13 +6,8 @@
 class ExampleSubscriber : public Subscriber {
 public:
     ExampleSubscriber() {
-        Data::getInstance().subscribe(this);
+        // init your function
     }
-
-    ~ExampleSubscriber() override {
-        Data::getInstance().unsubscribe(this);
-    }
-
     void update() override {
         // Do something when the expression is updated
         printf("\nExpression updated\n");

@@ -1,7 +1,6 @@
 #include "graph3dview.h"
 
 Graph3DView::Graph3DView(QWidget *parent, int minW, int minH): QWidget{parent} {
-    Data::getInstance().subscribe(this);
     this->_controller = new Graph3DController();
 
     // Widget and layouts
@@ -67,7 +66,6 @@ Graph3DView::Graph3DView(QWidget *parent, int minW, int minH): QWidget{parent} {
 }
 
 Graph3DView::~Graph3DView() {
-    Data::getInstance().unsubscribe(this);
     delete this->_controller;
 }
 
