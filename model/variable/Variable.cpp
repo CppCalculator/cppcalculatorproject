@@ -23,6 +23,10 @@ void Variable::afficherNPI() {
     std::cout << name;
 }
 
+const char& Variable::getName() const {
+    return name;
+}
+
 // Constructeur statique sans valeur initiale spécifique
 Variable* Variable::construct(const char &name) {
     auto it = symbolTable.find(name);
@@ -61,6 +65,10 @@ void Variable::changeValue(const float &val) {
 // Récupérer la table des symboles
 std::map<const char, Variable*> Variable::getSymbolTable() {
     return symbolTable;
+}
+
+void Variable::afficherNC(std::ostream &flux) const {
+    flux << name;
 }
 
 // Méthode afficherNPI avec flux

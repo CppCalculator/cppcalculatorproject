@@ -90,9 +90,10 @@ int main(int argc, char *argv[])
     a1.sauvegardeASCII(n_fichier);
     m1.sauvegardeASCII(n_fichier);
 
+    /**
     auto * view = new Graph3DView(nullptr, 512, 512);
     view->show();
-
+    */
     //gp4 test:
     /*
     Calculator calculator;

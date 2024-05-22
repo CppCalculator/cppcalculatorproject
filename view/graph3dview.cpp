@@ -315,7 +315,7 @@ void Graph3DView::exportGraph() {
                                   tr("Failed to save the image"));
         } else {
             QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
-                                     tr("Image saved successfully"));
+                   tr("Image saved successfully"));
         }
     }
 }

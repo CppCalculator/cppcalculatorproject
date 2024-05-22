@@ -16,6 +16,7 @@
 #include "../expression/Expression.h"
 #include "../utils/data.h"
 #include "../../view/graph3dview.h"
+#include "../../controller/graph2dcontroller.h"
 #include "../../view/graph2dview.h"
 
 QT_BEGIN_NAMESPACE
@@ -48,7 +49,6 @@ private:
     void createActions();
     void createMenus();
     void removeWidgetsFromLayout();
-    void resizeWindow();
 
     QWidget *widget;
     QWidget *topFiller;
