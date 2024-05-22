@@ -62,6 +62,8 @@ Graph3DView::Graph3DView(QWidget *parent, int minW, int minH): QWidget{parent} {
 
     // Show the widget
     this->setWindowTitle("Graph 3D");
+
+    this->setExpression(Data::getInstance().getExpression());
 }
 
 Graph3DView::~Graph3DView() {
