@@ -13,6 +13,10 @@ void Constante::afficherNC() {
     std::cout << m_valeur;
 }
 
+void Constante::afficherNC(std::ostream& flux) const {
+    flux << m_valeur;
+}
+
 void Constante::afficherNPI() {
     std::cout << m_valeur << " ";
 }
@@ -28,6 +32,7 @@ float Constante::calculer() {
 Expression *Constante::simplifier() {
     return new Constante(m_valeur);
 }
+
 
 void Constante::sauvegardeASCII( const std::string& n_fichier) {
     std::ofstream fichier(n_fichier);

@@ -76,4 +76,3 @@ bool Graph3DController::saveImage(QString const & filename, Q3DSurface * surface
     return image.save(filename);
 }
 
-

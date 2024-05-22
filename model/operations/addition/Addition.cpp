@@ -4,6 +4,7 @@
 
 #include "Addition.h"
 #include "../../constante/Constante.h"
+#include "../../variable/Variable.h"
 
 #include <fstream>
 #include <iostream>
@@ -19,6 +20,14 @@ void Addition::afficherNC() {
     std::cout << ")\n";
 }
 
+void Addition::afficherNC(std::ostream& os) const {
+    os << "(";
+    get_eg()->afficherNC(os);
+    os << " +";
+    get_ed()->afficherNC(os);
+    os << ")\n";
+}
+
 void Addition::afficherNPI() {
     get_eg()->afficherNPI();
     std::cout << " ";
@@ -26,6 +35,9 @@ void Addition::afficherNPI() {
     std::cout << " + ";
 }
 
+float Addition::calculer() {
+    return get_eg()->calculer() + get_ed()->calculer();
+}
 
 void Addition::afficherNPI(std::ostream& os) const {
     get_eg()->afficherNPI(os);
@@ -34,15 +46,18 @@ void Addition::afficherNPI(std::ostream& os) const {
     os << " +";
 }
 
-float Addition::calculer() {
-    return get_eg()->calculer() + get_ed()->calculer();
-}
-
 Expression *Addition::simplifier() {
-    const float result = calculer();
-    return new Constante(result);
-}
+    Expression* gauche = get_eg()->simplifier();
+    Expression* droite = get_ed()->simplifier();
+    auto* constGauche = dynamic_cast<Constante*>(gauche);
+    auto* constDroite = dynamic_cast<Constante*>(droite);
 
+    if (constGauche && constDroite) {
+        delete gauche; delete droite;
+        return new Constante(calculer());
+    }
+    return new Addition(gauche->simplifier(), droite->simplifier());
+}
 
 void Addition::sauvegardeASCII(const std::string& n_fichier) {
     std::ofstream fichier(n_fichier);
