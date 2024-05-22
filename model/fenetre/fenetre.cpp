@@ -88,18 +88,14 @@ void FenetrePrincipale::removeWidgetsFromLayout() {
 
 void FenetrePrincipale::saisirExpression() {
     removeWidgetsFromLayout();
-    if(calculatorView == nullptr) {
-        calculatorView = new Calculator(widget);
-    }
+    calculatorView = new Calculator(widget);
     layout->addWidget(calculatorView);
     layout->update();
 }
 
 void FenetrePrincipale::afficherClassique() {
     removeWidgetsFromLayout();
-    if(calculatorView == nullptr) {
-        calculatorView = new Calculator(widget);
-    }
+    calculatorView = new Calculator(widget);
     layout->addWidget(calculatorView);
     layout->update();
 
@@ -114,9 +110,7 @@ void FenetrePrincipale::afficherClassique() {
 
 void FenetrePrincipale::afficherNPI() {
     removeWidgetsFromLayout();
-    if(calculatorView == nullptr) {
-        calculatorView = new Calculator(widget);
-    }
+    calculatorView = new Calculator(widget);
     layout->addWidget(calculatorView);
     layout->update();
 
@@ -130,9 +124,7 @@ void FenetrePrincipale::afficherNPI() {
 
 void FenetrePrincipale::afficherValeurExpression() {
     removeWidgetsFromLayout();
-    if(calculatorView == nullptr) {
-        calculatorView = new Calculator(widget);
-    }
+    calculatorView = new Calculator(widget);
     layout->addWidget(calculatorView);
     layout->update();
 
@@ -142,9 +134,7 @@ void FenetrePrincipale::afficherValeurExpression() {
 
 void FenetrePrincipale::simplifierExpression() {
     removeWidgetsFromLayout();
-    if(calculatorView == nullptr) {
-        calculatorView = new Calculator(widget);
-    }
+    calculatorView = new Calculator(widget);
     layout->addWidget(calculatorView);
     layout->update();
 
@@ -155,9 +145,7 @@ void FenetrePrincipale::simplifierExpression() {
 
 void FenetrePrincipale::affichageGraphique3D() {
     removeWidgetsFromLayout();
-    if(graph3D == nullptr) {
-        graph3D = new Graph3DView(widget);
-    }
+    graph3D = new Graph3DView(widget);
     layout->addWidget(graph3D);
     layout->update();
 }
@@ -171,9 +159,7 @@ void FenetrePrincipale::chargerFichier() {
 }
 void FenetrePrincipale::affichageGraphique2D(){
     removeWidgetsFromLayout();
-    if(g == nullptr) {
-        g = new Graph2dView(widget);
-    }
+    g = new Graph2dView(widget);
     Graph2dController gController(Data::getInstance().getExpression(), Variable::construct('x',0), g);
     layout->addWidget(g);
     g->resize(800, 600);
