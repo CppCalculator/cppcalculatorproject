@@ -5,12 +5,33 @@
 #include "Inverse.h"
 
 #include <iostream>
+#include "../../constante/Constante.h"
+#include <iostream>
+#include <ostream>
+#include <string>
 
+void Inverse::afficherNC(std::ostream& os) const {
+    os << "1 / ";
+    get_e()->afficherNC(os);
+    os << " ";
+}
+
+void Inverse::afficherNPI(std::ostream& os) const {
+    os << "1 ";
+    get_e()->afficherNPI(os);
+    os << " / ";
+}
+
+Expression *Inverse::simplifier() {
+}
+
+void Inverse::sauvegardeASCII(const std::string& n_fichier) {
+}
 using namespace std;
 
 void Inverse::afficherNC(){
     cout << "1 / ";
-    get_e()->afficherNPI();
+    get_e()->afficherNC();
     cout << " ";
 }
 

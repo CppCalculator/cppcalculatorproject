@@ -17,6 +17,14 @@ void Multiplication::afficherNC() {
     std::cout << "\n";
 }
 
+void Multiplication::afficherNC(std::ostream& os) const {
+    os << "(";
+    get_eg()->afficherNC(os);
+    os << "*";
+    get_ed()->afficherNC(os);
+    os << " )\n";
+}
+
 void Multiplication::afficherNPI() {
     get_ed()->afficherNPI();
     std::cout << " ";
@@ -36,8 +44,16 @@ float Multiplication::calculer() {
 }
 
 Expression *Multiplication::simplifier() {
-    const float result = calculer();
-    return new Constante(result);
+    Expression* gauche = get_eg()->simplifier();
+    Expression* droite = get_ed()->simplifier();
+    auto* constGauche = dynamic_cast<Constante*>(gauche);
+    auto* constDroite = dynamic_cast<Constante*>(droite);
+
+    if (constGauche && constDroite) {
+        delete gauche; delete droite;
+        return new Constante(calculer());
+    }
+    return new Multiplication(droite->simplifier(), gauche->simplifier());
 }
 
 void Multiplication::sauvegardeASCII(const std::string& n_fichier) {

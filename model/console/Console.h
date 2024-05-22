@@ -1,4 +1,3 @@
-// console.h
 
 #include <iostream>
 #include <stack>
@@ -10,6 +9,7 @@
 #include "../operations/multiplication/Multiplication.h"
 #include "../operations/division/Division.h"
 #include "../expression/Expression.h"
+#include "../variable/Variable.h"
 
 class Console {
 public:

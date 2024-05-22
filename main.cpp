@@ -6,6 +6,13 @@
 #include "model/operations/addition/Addition.h"
 #include "model/operations/multiplication/Multiplication.h"
 #include "model/variable/Variable.h"
+#include "model/operations/puissance/Puissance.h"
+#include "model/operationsUnaire/absolue/Absolue.h"
+#include "model/operationsUnaire/carre/Carre.h"
+#include "model/operationsUnaire/inverse/Inverse.h"
+#include "model/operationsUnaire/logNeperien/Ln.h"
+#include "model/operationsUnaire/oppose/Oppose.h"
+#include "model/operationsUnaire/racine/Racine.h"
 
 #include "view/graph3dview.h"
 #include "model/fenetre/fenetre.h"
@@ -18,55 +25,101 @@
 
 int main(int argc, char *argv[])
 {
+    /*
+    Constante c1(3);
+    Constante c2(4);
+    Constante c3(2);
+    auto v1 = Variable::construct('a', 3);
+    auto v2 = Variable::construct('b', 2);
 
+    Addition a1(&c1, &c2);
+    Multiplication m1(&a1, &c3);
+    Addition a2(&m1, v1);
+    Division d1(&a2, v2);
+    d1.simplifier()->afficherNC();
+    */
+    /*
+    Constante c1(10);
+    Constante c2(20);
+    Constante c3(30);
+    auto v1 = Variable::construct('x', 3);
+    auto v2 = Variable::construct('y', 2);
+    Addition a1(&c1, &c1);
+    Addition a2(&a1, v1);
+    Addition a3(&c2, &c2);
+    Addition a4(&a3, v1);
+    Addition a5(&a2, &a4);
+    a5.simplifier()->afficherNC();
+    */
     QApplication a(argc, argv);
     FenetrePrincipale w;
     w.show();
 
-    Constante c1(2);
+    Constante c1(8);
     auto v1 = Variable::construct('x',0);
 
-    Constante c2(3);
-    auto v2 = Variable::construct('y',0);
+    Constante c2(0);
+    auto v2 = Variable::construct('y',2);
 
+    Puissance p1(&c1,&c2);
+
+    std::cout << "\n";
+    std::cout << "\n";
+    p1.calculer();
+    p1.afficherNC();
+    std::cout << "\n";
+    std::cout << "\n";
     Multiplication m1(&c1, v1);
-
+    m1.afficherNC();
+    std::cout << "\n";
+    m1.afficherNPI();
+    std::cout << "\n";
+  
     Multiplication m2(&c2, v2);
-
+    m2.afficherNC();
+    std::cout << "\n";
+    m2.afficherNPI();
+    std::cout << "\n";
     Addition a1(&m1, &m2);
-
+    a1.afficherNC();
+    std::cout << "\n";
+    a1.afficherNPI();
+    std::cout << "\n";
     //gp2 :
     std::string n_fichier = "expressions.txt";
     a1.sauvegardeASCII(n_fichier);
     m1.sauvegardeASCII(n_fichier);
 
-
-    Graph3DView view;
-    view.show();
-    view.setExpression(&a1);
-
+    /**
+    auto * view = new Graph3DView(nullptr, 512, 512);
+    view->show();
+    */
+    //gp4 test:
+    /*
     Calculator calculator;
     calculator.show();
-
+*/
     //gp5 test :
-    Graph2dView view2;
-    Graph2dController controller(&a1, v1, &view2);
-    view2.show();
-    view2.resize(800, 600);
+    //Graph2dView view2;
+    //Graph2dController controller(&a1, v1, &view2);
+    //view2.show();
+    //view2.resize(800, 600);
 
     //use the Singleton data class for the expression
     Data &data = Data::getInstance();
     data.updateExpression(&a1);
 
     //with subscriber :
-    ExampleSubscriber exampleSubscriber;
-    data.updateExpression(&a1);
+    //ExampleSubscriber exampleSubscriber;
+    //data.updateExpression(&a1);
 
     int exec = QApplication::exec();
 
-    //gp1 :
+    //gp1 test:
+    /*
     Console console;
     console.run();
+*/
 
     return exec;
 }
