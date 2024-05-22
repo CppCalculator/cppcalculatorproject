@@ -8,6 +8,12 @@ Ce projet est une application de calculatrice graphique 2D/3D développée en C+
 - Qt Creator 13.0.0
 - MinGW 11.2.0 (fourni par Qt)
 
+### Dependences
+
+- QtCharts
+- Qt3D
+- QtGraphs
+
 ## Diagramme de classes
 
 Le diagramme de classes suivant illustre la structure de l'application :
@@ -33,7 +39,7 @@ Le diagramme de classes suivant illustre la structure de l'application :
 - Calculatrice : Permet d'effectuer des opérations mathématiques de base.
 - Graphique 2D : Affiche une représentation graphique 2D des expressions mathématiques.
 - Graphique 3D : Affiche une représentation graphique 3D des expressions mathématiques.
-- Console : Permet d'entrer une expression par la console.
+- Console : Permet d'entrer une expression par la console. (avec l'argument console au lancement de l'application)
 - Sauvegarde : Permet de sauvegarder les expressions dans un fichier texte.
 - Variables : Permet de définir des variables et de les utiliser dans les expressions.
 
