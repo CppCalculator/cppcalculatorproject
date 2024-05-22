@@ -1,5 +1,6 @@
 #include <sstream>
 #include "Console.h"
+#include "../utils/data.h"
 
 Console::~Console() {
     clearExpressions();
@@ -15,9 +16,9 @@ void Console::run() {
 
             if (expressions.size() == 1) {
                 Expression* result = expressions.top();
+                Data::getInstance().updateExpression(expressions.top());
                 expressions.pop();
                 std::cout << "The result is: " << result->calculer() << std::endl;
-                delete result;
             } else {
                 std::cerr << "Error: Invalid expression. Please check the input." << std::endl;
             }
