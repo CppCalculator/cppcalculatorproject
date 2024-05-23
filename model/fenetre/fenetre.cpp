@@ -100,12 +100,12 @@ void FenetrePrincipale::afficherClassique() {
     layout->update();
 
     Data &data = Data::getInstance();
-    std::stringstream dataStringStream;
-    data.getExpression()->afficherNC(dataStringStream);
-    std::string dataFromStringStream;
-    dataStringStream >> dataFromStringStream;
-    std::cout << dataFromStringStream << std::endl;
-    calculatorView->editDisplay(dataFromStringStream);
+    std::stringstream buffer;
+    std::streambuf* prevcoutbuf = std::cout.rdbuf(buffer.rdbuf());
+    data.getExpression()->afficherNC();
+    std::cout.rdbuf(prevcoutbuf);
+    std::string result = buffer.str();
+    calculatorView->editDisplay(result);
 }
 
 void FenetrePrincipale::afficherNPI() {
@@ -115,11 +115,12 @@ void FenetrePrincipale::afficherNPI() {
     layout->update();
 
     Data &data = Data::getInstance();
-    std::stringstream dataStringStream;
-    data.getExpression()->afficherNPI(dataStringStream);
-    std::string dataFromStringStream;
-    dataStringStream >> dataFromStringStream;
-    calculatorView->editDisplay(dataFromStringStream);
+    std::stringstream buffer;
+    std::streambuf* prevcoutbuf = std::cout.rdbuf(buffer.rdbuf());
+    data.getExpression()->afficherNPI();
+    std::cout.rdbuf(prevcoutbuf);
+    std::string result = buffer.str();
+    calculatorView->editDisplay(result);
 }
 
 void FenetrePrincipale::afficherValeurExpression() {

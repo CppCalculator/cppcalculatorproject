@@ -14,7 +14,7 @@ void Division::afficherNC() {
     get_ed()->afficherNC();
     std::cout << " / ";
     get_eg()->afficherNC();
-    std::cout << "\n";
+    std::cout << "";
 }
 
 void Division::afficherNC(std::ostream& os) const {
@@ -22,7 +22,7 @@ void Division::afficherNC(std::ostream& os) const {
     get_eg()->afficherNC(os);
     os << "/";
     get_ed()->afficherNC(os);
-    os << ")\n";
+    os << ")";
 }
 
 void Division::afficherNPI() {
