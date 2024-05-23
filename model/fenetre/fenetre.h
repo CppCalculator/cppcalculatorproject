@@ -70,6 +70,8 @@ private:
     Calculator *calculatorView = nullptr;
     Graph3DView *graph3D = nullptr;
     Graph2dView *g = nullptr;
+
+    void enregistrerFichier();
 };
 
 #endif // MAINWINDOW_H

@@ -29,6 +29,7 @@ void FenetrePrincipale::createActions() {
     enregistrerFichierAction = new QAction(tr("&Enregistrer"), this);
     enregistrerFichierAction->setShortcut(QKeySequence::Save);
     enregistrerFichierAction->setStatusTip(tr("&Enregistrer dans un fichier"));
+    connect(enregistrerFichierAction, &QAction::triggered, this, &FenetrePrincipale::enregistrerFichier);
 
     saisirExpressionAction = new QAction(tr("&Saisir une expression"), this);
     saisirExpressionAction->setStatusTip(tr("&Saisir une expression"));
@@ -151,11 +152,21 @@ void FenetrePrincipale::affichageGraphique3D() {
     layout->update();
 }
 
+void FenetrePrincipale::enregistrerFichier() {
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Enregistrer Fichier"), "", tr("Text Files (*.txt);;All Files (*)"));
+    if (!fileName.isEmpty()) {
+        // Afficher le chemin absolu du fichier sélectionné
+        QMessageBox::information(this, tr("Chemin du fichier"), fileName);
+        Data::getInstance().getExpression()->sauvegardeASCII(fileName.toStdString());
+    }
+}
+
 void FenetrePrincipale::chargerFichier() {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir Fichier"), "", tr("Text Files (*.txt);;All Files (*)"));
     if (!fileName.isEmpty()) {
         // Afficher le chemin absolu du fichier sélectionné
         QMessageBox::information(this, tr("Chemin du fichier"), fileName);
+        Data::getInstance().updateExpression(Expression::load_expression(fileName.toStdString()));
     }
 }
 void FenetrePrincipale::affichageGraphique2D(){

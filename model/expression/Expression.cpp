@@ -17,6 +17,9 @@
 #include "../operations/multiplication/Multiplication.h"
 #include "../constante/Constante.h"
 #include "../operations/division/Division.h"
+#include "../variable/Variable.h"
+#include "../operations/puissance/Puissance.h"
+#include "../operationsUnaire/carre/Carre.h"
 
 Expression* Expression::load_expression(const std::string& chemin) {
     std::ifstream fichier(chemin);
@@ -45,6 +48,14 @@ Expression* Expression::load_expression(const std::string& chemin) {
                 pile.push(new Multiplication(gauche, droite));
             } else if (token == "/") {
                 pile.push(new Division(gauche, droite));
+            } else if (token == "x") {
+                pile.push(Variable::construct('x'));
+            } else if (token == "y") {
+                pile.push(Variable::construct('y'));
+            } else if (token == "^") {
+                pile.push(new Puissance(gauche, droite));
+            } else if (token ==  "^2") {
+                pile.push(new Carre(gauche));
             }
         }
     }

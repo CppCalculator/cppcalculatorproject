@@ -23,8 +23,9 @@ void Puissance::afficherNC() {
 
 void Puissance::afficherNPI() {
     get_eg()->afficherNC();
-    cout << "^" ;
+    cout << " ";
     get_ed()->afficherNC();
+    cout << " ^" ;
 }
 
 void Puissance::afficherNC(std::ostream& flux) const {
