@@ -1,7 +1,3 @@
-//
-// Created by mathias.mourgues on 22/03/2024.
-//
-
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
 #include <iostream>
@@ -19,9 +15,13 @@ public:
 
     virtual float calculer() = 0;
 
+    virtual void afficherNC(std::ostream& flux) const = 0;
+
     virtual void afficherNPI(std::ostream& flux) const = 0;
 
     virtual void sauvegardeASCII(const std::string& n_fichier) = 0;
+
+    virtual Expression* simplifier() = 0;
 
     static Expression* load_expression(const std::string& chemin);
 };
